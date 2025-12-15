@@ -1,0 +1,86 @@
+﻿@model Warenwritschaftssystem_der_Segitztherme.Models.Lagerplatz
+@{
+    ViewData["Title"] = "Neuer Lagerplatz";
+}
+
+<h2><i class="bi bi-plus-circle"></i> Neuen Lagerplatz erstellen</h2>
+
+<form asp-action="Create" method="post" class="mt-4">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="mb-3">
+                <label for="lagerPlatzName" class="form-label">Lagerplatz Name</label>
+                <input type="text" class="form-control" id="lagerPlatzName"
+                       asp-for="LagerPlatzName" required
+                       placeholder="z.B. A1-R1-F1">
+                <span asp-validation-for="LagerPlatzName" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label for="lagerID" class="form-label">Lager</label>
+                <select class="form-select" id="lagerID" asp-for="LagerID" required>
+                    <option value="">-- Lager wählen --</option>
+                    @* Diese Liste wird vom Controller befüllt *@
+                </select>
+                <span asp-validation-for="LagerID" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label for="lagerBereich" class="form-label">Lagerbereich</label>
+                <select class="form-select" id="lagerBereich" asp-for="LagerBereich" required>
+                    <option value="">-- Bereich wählen --</option>
+                    <option value="Halle A">Halle A</option>
+                    <option value="Halle B">Halle B</option>
+                    <option value="Halle C">Halle C</option>
+                    <option value="Außenlager">Außenlager</option>
+                </select>
+                <span asp-validation-for="LagerBereich" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label for="lagerTyp" class="form-label">Lagertyp</label>
+                <select class="form-select" id="lagerTyp" asp-for="LagerTyp" required>
+                    <option value="">-- Typ wählen --</option>
+                    <option value="Hochregal">Hochregal</option>
+                    <option value="Blocklager">Blocklager</option>
+                    <option value="Palettenregal">Palettenregal</option>
+                    <option value="Fachbodenregal">Fachbodenregal</option>
+                </select>
+                <span asp-validation-for="LagerTyp" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="mb-3">
+                <label for="huAnzahl" class="form-label">Maximale HU-Anzahl</label>
+                <input type="number" class="form-control" id="huAnzahl"
+                       asp-for="HUAnzahl" required min="1" max="1000">
+                <div class="form-text">Wie viele Handling Units können maximal gelagert werden?</div>
+                <span asp-validation-for="HUAnzahl" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label for="maxGewicht" class="form-label">Maximales Gewicht (kg)</label>
+                <input type="number" step="0.01" class="form-control" id="maxGewicht"
+                       asp-for="MaxGewicht" required min="0.01" max="100000">
+                <div class="form-text">Maximale Tragfähigkeit des Lagerplatzes</div>
+                <span asp-validation-for="MaxGewicht" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label for="notizen" class="form-label">Notizen (optional)</label>
+                <textarea class="form-control" id="notizen" name="notizen" rows="4"
+                          placeholder="Zusätzliche Informationen zum Lagerplatz..."></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-3">
+        <button type="submit" class="btn btn-primary">
+            <i class="bi bi-check-circle"></i> Lagerplatz speichern
+        </button>
+        <a asp-action="Index" class="btn btn-secondary">
+            <i class="bi bi-x-circle"></i> Abbrechen
+        </a>
+    </div>
+</form>
