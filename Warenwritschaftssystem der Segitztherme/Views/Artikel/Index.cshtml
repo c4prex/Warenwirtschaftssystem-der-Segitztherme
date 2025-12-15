@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Warenwritschaftssystem_der_Segitztherme.Models.Artikel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ArtikelName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArtikelBeschreibung)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArtikelGewicht)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArtikelMaße)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArtikelName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArtikelBeschreibung)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArtikelGewicht)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArtikelMaße)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ArtikelID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ArtikelID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ArtikelID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
