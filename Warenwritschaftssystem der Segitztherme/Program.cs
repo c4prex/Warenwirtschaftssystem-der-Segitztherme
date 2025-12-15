@@ -1,4 +1,9 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Warenwritschaftssystem_der_Segitztherme;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<DataApplicationDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DataApplicationDbContext") ?? throw new InvalidOperationException("Connection string 'DataApplicationDbContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

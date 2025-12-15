@@ -1,17 +1,18 @@
 ﻿@model Warenwritschaftssystem_der_Segitztherme.Models.Lagerplatz
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
 }
 
-<h1>Create</h1>
+<h1>Edit</h1>
 
 <h4>Lagerplatz</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="LagerPlatzID" />
             <div class="form-group">
                 <label asp-for="LagerPlatzName" class="control-label"></label>
                 <input asp-for="LagerPlatzName" class="form-control" />
@@ -43,17 +44,10 @@
                 <span asp-validation-for="LagerTyp" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
-
-            <div class="mb-3">
-                <label for="maxGewicht" class="form-label">Maximales Gewicht (kg)</label>
-                <input type="number" step="0.01" class="form-control" id="maxGewicht"
-                       asp-for="MaxGewicht" required min="0.01" max="100000">
-                <div class="form-text">Maximale Tragfähigkeit des Lagerplatzes</div>
-                <span asp-validation-for="MaxGewicht" class="text-danger"></span>
 </div>
 
 <div>

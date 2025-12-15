@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Warenwritschaftssystem_der_Segitztherme.Models.Lagerplatz>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LagerPlatzName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LagerID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HUAnzahl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaxGewicht)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LagerBereich)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LagerTyp)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.LagerPlatzName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LagerID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HUAnzahl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaxGewicht)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LagerBereich)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LagerTyp)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.LagerPlatzID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.LagerPlatzID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.LagerPlatzID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
