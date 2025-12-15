@@ -9,10 +9,13 @@
 
   <ItemGroup>
     <Folder Include="Views\Lagerplatz\" />
+<<<<<<< HEAD
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.22" />
+=======
+>>>>>>> ca7c6aabf8158def1bef601d1c66b26175403985
   </ItemGroup>
 
 </Project>
