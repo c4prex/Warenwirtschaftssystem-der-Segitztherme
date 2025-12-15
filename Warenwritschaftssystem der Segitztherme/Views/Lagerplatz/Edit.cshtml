@@ -1,0 +1,59 @@
+﻿@model Warenwritschaftssystem_der_Segitztherme.Models.Lagerplatz
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Lagerplatz</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="LagerPlatzID" />
+            <div class="form-group">
+                <label asp-for="LagerPlatzName" class="control-label"></label>
+                <input asp-for="LagerPlatzName" class="form-control" />
+                <span asp-validation-for="LagerPlatzName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LagerID" class="control-label"></label>
+                <input asp-for="LagerID" class="form-control" />
+                <span asp-validation-for="LagerID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HUAnzahl" class="control-label"></label>
+                <input asp-for="HUAnzahl" class="form-control" />
+                <span asp-validation-for="HUAnzahl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaxGewicht" class="control-label"></label>
+                <input asp-for="MaxGewicht" class="form-control" />
+                <span asp-validation-for="MaxGewicht" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LagerBereich" class="control-label"></label>
+                <input asp-for="LagerBereich" class="form-control" />
+                <span asp-validation-for="LagerBereich" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LagerTyp" class="control-label"></label>
+                <input asp-for="LagerTyp" class="form-control" />
+                <span asp-validation-for="LagerTyp" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
