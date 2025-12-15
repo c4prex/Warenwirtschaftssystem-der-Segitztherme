@@ -1,0 +1,54 @@
+﻿@model Warenwritschaftssystem_der_Segitztherme.Models.Lagerplatz
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Lagerplatz</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.LagerPlatzName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LagerPlatzName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.LagerID)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LagerID)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.HUAnzahl)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.HUAnzahl)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MaxGewicht)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MaxGewicht)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.LagerBereich)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LagerBereich)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.LagerTyp)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LagerTyp)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.LagerPlatzID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
