@@ -1,8 +1,44 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<div></div>
+<head>
+    <meta charset="UTF-8">
+    <title>Kacheln im Div</title>
+    <style>
+        .container {
+            display: flex; /* ordnet die Kacheln nebeneinander */
+            gap: 40px; /* Abstand zwischen den Kacheln */
+            flex-wrap: wrap; /* Zeilenumbruch bei vielen Kacheln */
+            padding: 10px;
+            background: white;
+        }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+        .tile {
+            width: 200px;
+            height: 75px;
+            background-color: lightblue;
+            color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.3s;
+        }
+
+            .tile:hover {
+                transform: scale(1.05);
+                background-color: #45a049;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="tile"><i class="fas fa-warehouse"></i> onclick="alert('Kachel 1 geklickt!')">Lagerverwaltung</div>
+        <div class="tile" onclick="alert('In Bearbeitung!')">Personalverwaltung</div>
+        <div class="tile" onclick="alert('In Bearbeitung!')">Finanzverwaltung</div>
+    </div>
+</body>
+</html>
+
