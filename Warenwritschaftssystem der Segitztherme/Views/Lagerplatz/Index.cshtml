@@ -1,65 +1,50 @@
 ﻿@model IEnumerable<Warenwritschaftssystem_der_Segitztherme.Models.Lagerplatz>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Lagerplätze";
 }
 
-<h1>Index</h1>
+<div class="container mt-5">
+    <div class="card shadow-sm border-0">
+        <div class="card-header bg-white border-bottom d-flex justify-content-between align-items-center">
+            <h4 class="mb-0 fw-semibold">Lagerplätze</h4>
+            <a asp-action="Create" class="btn btn-primary">
+                Neuer Lagerplatz
+            </a>
+        </div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.LagerPlatzName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LagerID)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.HUAnzahl)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MaxGewicht)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LagerBereich)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LagerTyp)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.LagerPlatzName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LagerID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HUAnzahl)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MaxGewicht)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LagerBereich)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LagerTyp)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.LagerPlatzID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.LagerPlatzID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.LagerPlatzID">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>Name</th>
+                        <th>Lager</th>
+                        <th>HU</th>
+                        <th>Max. Gewicht</th>
+                        <th>Bereich</th>
+                        <th>Typ</th>
+                        <th class="text-end">Aktionen</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="fw-medium">@item.LagerPlatzName</td>
+                            <td>@item.LagerID</td>
+                            <td>@item.HUAnzahl</td>
+                            <td>@item.MaxGewicht kg</td>
+                            <td>@item.LagerBereich</td>
+                            <td>@item.LagerTyp</td>
+                            <td class="text-end">
+                                <a asp-action="Details" asp-route-id="@item.LagerPlatzID" class="btn btn-sm btn-outline-secondary">Details</a>
+                                <a asp-action="Edit" asp-route-id="@item.LagerPlatzID" class="btn btn-sm btn-outline-primary">Edit</a>
+                                <a asp-action="Delete" asp-route-id="@item.LagerPlatzID" class="btn btn-sm btn-outline-danger">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

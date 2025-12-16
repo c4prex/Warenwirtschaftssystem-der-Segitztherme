@@ -1,59 +1,76 @@
 ﻿@model Warenwritschaftssystem_der_Segitztherme.Models.Lagerplatz
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Lagerplatz bearbeiten";
 }
 
-<h1>Edit</h1>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
 
-<h4>Lagerplatz</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="LagerPlatzID" />
-            <div class="form-group">
-                <label asp-for="LagerPlatzName" class="control-label"></label>
-                <input asp-for="LagerPlatzName" class="form-control" />
-                <span asp-validation-for="LagerPlatzName" class="text-danger"></span>
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-white border-bottom">
+                    <h4 class="mb-0 fw-semibold">Lagerplatz bearbeiten</h4>
+                </div>
+
+                <div class="card-body">
+                    <form asp-action="Edit">
+                        <input type="hidden" asp-for="LagerPlatzID" />
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger d-none"></div>
+
+                        <div class="mb-3">
+                            <label asp-for="LagerPlatzName" class="form-label"></label>
+                            <input asp-for="LagerPlatzName" class="form-control" />
+                            <span asp-validation-for="LagerPlatzName" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="LagerID" class="form-label"></label>
+                            <input asp-for="LagerID" class="form-control" />
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="HUAnzahl" class="form-label"></label>
+                                <input asp-for="HUAnzahl" class="form-control" />
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="MaxGewicht" class="form-label"></label>
+                                <input asp-for="MaxGewicht" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="LagerBereich" class="form-label"></label>
+                                <input asp-for="LagerBereich" class="form-control" />
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="LagerTyp" class="form-label"></label>
+                                <input asp-for="LagerTyp" class="form-control" />
+                            </div>
+                        </div>
+
+                        <hr />
+
+                        <div class="d-flex justify-content-between">
+                            <a asp-action="Index" class="btn btn-outline-secondary">
+                                Abbrechen
+                            </a>
+                            <button type="submit" class="btn btn-primary px-4">
+                                Änderungen speichern
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="LagerID" class="control-label"></label>
-                <input asp-for="LagerID" class="form-control" />
-                <span asp-validation-for="LagerID" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="HUAnzahl" class="control-label"></label>
-                <input asp-for="HUAnzahl" class="form-control" />
-                <span asp-validation-for="HUAnzahl" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MaxGewicht" class="control-label"></label>
-                <input asp-for="MaxGewicht" class="form-control" />
-                <span asp-validation-for="MaxGewicht" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="LagerBereich" class="control-label"></label>
-                <input asp-for="LagerBereich" class="form-control" />
-                <span asp-validation-for="LagerBereich" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="LagerTyp" class="control-label"></label>
-                <input asp-for="LagerTyp" class="form-control" />
-                <span asp-validation-for="LagerTyp" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

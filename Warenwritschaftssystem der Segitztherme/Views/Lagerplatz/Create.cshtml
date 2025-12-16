@@ -1,64 +1,91 @@
 ﻿@model Warenwritschaftssystem_der_Segitztherme.Models.Lagerplatz
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Lagerplatz anlegen";
 }
 
-<h2><i class="bi bi-plus-circle"></i> Neuen Lagerplatz erstellen</h2>>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
 
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-white border-bottom">
+                    <h4 class="mb-0 fw-semibold">Neuen Lagerplatz anlegen</h4>
+                    <small class="text-muted">Bitte alle erforderlichen Informationen ausfüllen</small>
+                </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="LagerPlatzName" class="control-label"></label>
-                <input asp-for="LagerPlatzName" class="form-control" />
-                <span asp-validation-for="LagerPlatzName" class="text-danger"></span>
+                <div class="card-body">
+                    <form asp-action="Create" novalidate>
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger d-none"></div>
+
+                        <!-- Lagerplatz Name -->
+                        <div class="mb-3">
+                            <label asp-for="LagerPlatzName" class="form-label fw-medium"></label>
+                            <input asp-for="LagerPlatzName" class="form-control" placeholder="z. B. Regal A3-02" />
+                            <span asp-validation-for="LagerPlatzName" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Lager ID -->
+                        <div class="mb-3">
+                            <label asp-for="LagerID" class="form-label fw-medium"></label>
+                            <input asp-for="LagerID" class="form-control" placeholder="Lager-ID eingeben" />
+                            <span asp-validation-for="LagerID" class="text-danger small"></span>
+                        </div>
+
+                        <div class="row">
+                            <!-- HU Anzahl -->
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="HUAnzahl" class="form-label fw-medium"></label>
+                                <input asp-for="HUAnzahl" class="form-control" />
+                                <span asp-validation-for="HUAnzahl" class="text-danger small"></span>
+                            </div>
+
+                            <!-- Max Gewicht -->
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="MaxGewicht" class="form-label fw-medium"></label>
+                                <input asp-for="MaxGewicht" class="form-control" placeholder="in kg" />
+                                <span asp-validation-for="MaxGewicht" class="text-danger small"></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <!-- Lager Bereich -->
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="LagerBereich" class="form-label fw-medium"></label>
+                                <input asp-for="LagerBereich" class="form-control" placeholder="z. B. Technik, Küche" />
+                                <span asp-validation-for="LagerBereich" class="text-danger small"></span>
+                            </div>
+
+                            <!-- Lager Typ -->
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="LagerTyp" class="form-label fw-medium"></label>
+                                <input asp-for="LagerTyp" class="form-control" placeholder="z. B. Regal, Kühlraum" />
+                                <span asp-validation-for="LagerTyp" class="text-danger small"></span>
+                            </div>
+                        </div>
+
+                        <hr />
+
+                        <!-- Aktionen -->
+                        <div class="d-flex justify-content-between align-items-center">
+                            <a asp-action="Index" class="btn btn-outline-secondary">
+                                Abbrechen
+                            </a>
+
+                            <button type="submit" class="btn btn-primary px-4">
+                                Lagerplatz speichern
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="LagerID" class="control-label"></label>
-                <input asp-for="LagerID" class="form-control" />
-                <span asp-validation-for="LagerID" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="HUAnzahl" class="control-label"></label>
-                <input asp-for="HUAnzahl" class="form-control" />
-                <span asp-validation-for="HUAnzahl" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MaxGewicht" class="control-label"></label>
-                <input asp-for="MaxGewicht" class="form-control" />
-                <span asp-validation-for="MaxGewicht" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="LagerBereich" class="control-label"></label>
-                <input asp-for="LagerBereich" class="form-control" />
-                <span asp-validation-for="LagerBereich" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="LagerTyp" class="control-label"></label>
-                <input asp-for="LagerTyp" class="form-control" />
-                <span asp-validation-for="LagerTyp" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+
+        </div>
     </div>
-
-            <div class="mb-3">
-                <label for="maxGewicht" class="form-label">Maximales Gewicht (kg)</label>
-                <input type="number" step="0.01" class="form-control" id="maxGewicht"
-                       asp-for="MaxGewicht" required min="0.01" max="100000">
-                <div class="form-text">Maximale Tragfähigkeit des Lagerplatzes</div>
-                <span asp-validation-for="MaxGewicht" class="text-danger"></span>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
