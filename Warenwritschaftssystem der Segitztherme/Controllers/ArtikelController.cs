@@ -12,7 +12,7 @@ namespace Warenwritschaftssystem_der_Segitztherme.Controllers
 {
     public class ArtikelController : Controller
     {
-        vate readonly DataApplicationDbContext _context;
+        private readonly DataApplicationDbContext _context;
 
         public ArtikelController(DataApplicationDbContext context)
         {

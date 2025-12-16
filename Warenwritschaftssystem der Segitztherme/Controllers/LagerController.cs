@@ -19,6 +19,13 @@ namespace Warenwritschaftssystem_der_Segitztherme.Controllers
             _context = context;
         }
 
+        public IActionResult Startseite()
+        {
+            return View();
+        }
+
+
+
         // GET: Lager
         public async Task<IActionResult> Index()
         {
@@ -48,6 +55,7 @@ namespace Warenwritschaftssystem_der_Segitztherme.Controllers
         {
             return View();
         }
+
 
         // POST: Lager/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -153,5 +161,6 @@ namespace Warenwritschaftssystem_der_Segitztherme.Controllers
         {
             return _context.Lager.Any(e => e.LagerID == id);
         }
+
     }
 }
