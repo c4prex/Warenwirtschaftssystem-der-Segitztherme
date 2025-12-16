@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Warenwritschaftssystem_der_Segitztherme.Data;
 
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<WarenwirtschaftContext>(options =>
@@ -13,12 +14,6 @@ builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
-// Datenbank-Migrationen beim Start ausführen
-using (var scope = app.Services.CreateScope())
-{
-    var context = scope.ServiceProvider.GetRequiredService<WarenwirtschaftContext>();
-    context.Database.Migrate();
-}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

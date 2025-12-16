@@ -61,6 +61,10 @@ namespace Warenwritschaftssystem_der_Segitztherme.Migrations
 
                     b.HasKey("HuId");
 
+                    b.HasIndex("ArtikelID");
+
+                    b.HasIndex("LagerID");
+
                     b.ToTable("HUs");
                 });
 
@@ -108,7 +112,33 @@ namespace Warenwritschaftssystem_der_Segitztherme.Migrations
 
                     b.HasKey("LagerPlatzID");
 
+                    b.HasIndex("LagerID");
+
                     b.ToTable("Lagerplaetze");
+                });
+
+            modelBuilder.Entity("Warenwritschaftssystem_der_Segitztherme.Models.HU", b =>
+                {
+                    b.HasOne("Warenwritschaftssystem_der_Segitztherme.Models.Artikel", null)
+                        .WithMany()
+                        .HasForeignKey("ArtikelID")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Warenwritschaftssystem_der_Segitztherme.Models.Lager", null)
+                        .WithMany()
+                        .HasForeignKey("LagerID")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Warenwritschaftssystem_der_Segitztherme.Models.Lagerplatz", b =>
+                {
+                    b.HasOne("Warenwritschaftssystem_der_Segitztherme.Models.Lager", null)
+                        .WithMany()
+                        .HasForeignKey("LagerID")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
