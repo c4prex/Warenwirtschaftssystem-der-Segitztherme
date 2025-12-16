@@ -5,16 +5,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Warenwritschaftssystem_der_Segitztherme;
+using Warenwritschaftssystem_der_Segitztherme.Data;
 using Warenwritschaftssystem_der_Segitztherme.Models;
 
 namespace Warenwritschaftssystem_der_Segitztherme.Controllers
 {
     public class LagerplatzController : Controller
     {
-        private readonly DataApplicationDbContext _context;
+        private readonly WarenwirtschaftContext _context;
 
-        public LagerplatzController(DataApplicationDbContext context)
+        public LagerplatzController(WarenwirtschaftContext context)
         {
             _context = context;
         }
@@ -22,7 +22,7 @@ namespace Warenwritschaftssystem_der_Segitztherme.Controllers
         // GET: Lagerplatz
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Lagerplatz.ToListAsync());
+            return View(await _context.Lagerplaetze.ToListAsync());
         }
 
         // GET: Lagerplatz/Details/5
@@ -33,7 +33,7 @@ namespace Warenwritschaftssystem_der_Segitztherme.Controllers
                 return NotFound();
             }
 
-            var lagerplatz = await _context.Lagerplatz
+            var lagerplatz = await _context.Lagerplaetze
                 .FirstOrDefaultAsync(m => m.LagerPlatzID == id);
             if (lagerplatz == null)
             {
@@ -73,7 +73,7 @@ namespace Warenwritschaftssystem_der_Segitztherme.Controllers
                 return NotFound();
             }
 
-            var lagerplatz = await _context.Lagerplatz.FindAsync(id);
+            var lagerplatz = await _context.Lagerplaetze.FindAsync(id);
             if (lagerplatz == null)
             {
                 return NotFound();
@@ -124,7 +124,7 @@ namespace Warenwritschaftssystem_der_Segitztherme.Controllers
                 return NotFound();
             }
 
-            var lagerplatz = await _context.Lagerplatz
+            var lagerplatz = await _context.Lagerplaetze
                 .FirstOrDefaultAsync(m => m.LagerPlatzID == id);
             if (lagerplatz == null)
             {
@@ -139,10 +139,10 @@ namespace Warenwritschaftssystem_der_Segitztherme.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var lagerplatz = await _context.Lagerplatz.FindAsync(id);
+            var lagerplatz = await _context.Lagerplaetze.FindAsync(id);
             if (lagerplatz != null)
             {
-                _context.Lagerplatz.Remove(lagerplatz);
+                _context.Lagerplaetze.Remove(lagerplatz);
             }
 
             await _context.SaveChangesAsync();
@@ -151,7 +151,7 @@ namespace Warenwritschaftssystem_der_Segitztherme.Controllers
 
         private bool LagerplatzExists(int id)
         {
-            return _context.Lagerplatz.Any(e => e.LagerPlatzID == id);
+            return _context.Lagerplaetze.Any(e => e.LagerPlatzID == id);
         }
     }
 }

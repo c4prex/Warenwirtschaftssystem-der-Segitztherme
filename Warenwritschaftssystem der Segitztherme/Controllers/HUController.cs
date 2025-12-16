@@ -5,16 +5,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Warenwritschaftssystem_der_Segitztherme;
+using Warenwritschaftssystem_der_Segitztherme.Data;
 using Warenwritschaftssystem_der_Segitztherme.Models;
 
 namespace Warenwritschaftssystem_der_Segitztherme.Controllers
 {
     public class HUController : Controller
     {
-        private readonly DataApplicationDbContext _context;
+        private readonly WarenwirtschaftContext _context;
 
-        public HUController(DataApplicationDbContext context)
+        public HUController(WarenwirtschaftContext context)
         {
             _context = context;
         }
@@ -22,7 +22,7 @@ namespace Warenwritschaftssystem_der_Segitztherme.Controllers
         // GET: HU
         public async Task<IActionResult> Index()
         {
-            return View(await _context.HU.ToListAsync());
+            return View(await _context.HUs.ToListAsync());
         }
 
         // GET: HU/Details/5
@@ -33,7 +33,7 @@ namespace Warenwritschaftssystem_der_Segitztherme.Controllers
                 return NotFound();
             }
 
-            var hU = await _context.HU
+            var hU = await _context.HUs
                 .FirstOrDefaultAsync(m => m.HuId == id);
             if (hU == null)
             {
@@ -73,7 +73,7 @@ namespace Warenwritschaftssystem_der_Segitztherme.Controllers
                 return NotFound();
             }
 
-            var hU = await _context.HU.FindAsync(id);
+            var hU = await _context.HUs.FindAsync(id);
             if (hU == null)
             {
                 return NotFound();
@@ -124,7 +124,7 @@ namespace Warenwritschaftssystem_der_Segitztherme.Controllers
                 return NotFound();
             }
 
-            var hU = await _context.HU
+            var hU = await _context.HUs
                 .FirstOrDefaultAsync(m => m.HuId == id);
             if (hU == null)
             {
@@ -139,10 +139,10 @@ namespace Warenwritschaftssystem_der_Segitztherme.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var hU = await _context.HU.FindAsync(id);
+            var hU = await _context.HUs.FindAsync(id);
             if (hU != null)
             {
-                _context.HU.Remove(hU);
+                _context.HUs.Remove(hU);
             }
 
             await _context.SaveChangesAsync();
@@ -151,7 +151,7 @@ namespace Warenwritschaftssystem_der_Segitztherme.Controllers
 
         private bool HUExists(int id)
         {
-            return _context.HU.Any(e => e.HuId == id);
+            return _context.HUs.Any(e => e.HuId == id);
         }
     }
 }

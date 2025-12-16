@@ -5,16 +5,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Warenwritschaftssystem_der_Segitztherme;
+using Warenwritschaftssystem_der_Segitztherme.Data;
 using Warenwritschaftssystem_der_Segitztherme.Models;
 
 namespace Warenwritschaftssystem_der_Segitztherme.Controllers
 {
     public class ArtikelController : Controller
     {
-        private readonly DataApplicationDbContext _context;
+        private readonly WarenwirtschaftContext _context;
 
-        public ArtikelController(DataApplicationDbContext context)
+        public ArtikelController(WarenwirtschaftContext context)
         {
             _context = context;
         }
@@ -22,7 +22,7 @@ namespace Warenwritschaftssystem_der_Segitztherme.Controllers
         // GET: Artikel
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Artikel.ToListAsync());
+            return View(await _context.Artikels.ToListAsync());
         }
 
         // GET: Artikel/Details/5
@@ -33,7 +33,7 @@ namespace Warenwritschaftssystem_der_Segitztherme.Controllers
                 return NotFound();
             }
 
-            var artikel = await _context.Artikel
+            var artikel = await _context.Artikels
                 .FirstOrDefaultAsync(m => m.ArtikelID == id);
             if (artikel == null)
             {
@@ -73,7 +73,7 @@ namespace Warenwritschaftssystem_der_Segitztherme.Controllers
                 return NotFound();
             }
 
-            var artikel = await _context.Artikel.FindAsync(id);
+            var artikel = await _context.Artikels.FindAsync(id);
             if (artikel == null)
             {
                 return NotFound();
@@ -124,7 +124,7 @@ namespace Warenwritschaftssystem_der_Segitztherme.Controllers
                 return NotFound();
             }
 
-            var artikel = await _context.Artikel
+            var artikel = await _context.Artikels
                 .FirstOrDefaultAsync(m => m.ArtikelID == id);
             if (artikel == null)
             {
@@ -139,10 +139,10 @@ namespace Warenwritschaftssystem_der_Segitztherme.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var artikel = await _context.Artikel.FindAsync(id);
+            var artikel = await _context.Artikels.FindAsync(id);
             if (artikel != null)
             {
-                _context.Artikel.Remove(artikel);
+                _context.Artikels.Remove(artikel);
             }
 
             await _context.SaveChangesAsync();
@@ -151,7 +151,7 @@ namespace Warenwritschaftssystem_der_Segitztherme.Controllers
 
         private bool ArtikelExists(int id)
         {
-            return _context.Artikel.Any(e => e.ArtikelID == id);
+            return _context.Artikels.Any(e => e.ArtikelID == id);
         }
     }
 }
