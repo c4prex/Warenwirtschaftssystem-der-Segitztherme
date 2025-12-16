@@ -4,10 +4,9 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h2><i class="bi bi-plus-circle"></i> Neuen Lagerplatz erstellen</h2>>
 
-<h4>Lagerplatz</h4>
-<hr />
+
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
@@ -47,6 +46,13 @@
             </div>
         </form>
     </div>
+
+            <div class="mb-3">
+                <label for="maxGewicht" class="form-label">Maximales Gewicht (kg)</label>
+                <input type="number" step="0.01" class="form-control" id="maxGewicht"
+                       asp-for="MaxGewicht" required min="0.01" max="100000">
+                <div class="form-text">Maximale Tragfähigkeit des Lagerplatzes</div>
+                <span asp-validation-for="MaxGewicht" class="text-danger"></span>
 </div>
 
 <div>

@@ -5,16 +5,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Warenwritschaftssystem_der_Segitztherme;
+using Warenwritschaftssystem_der_Segitztherme.Data;
 using Warenwritschaftssystem_der_Segitztherme.Models;
 
 namespace Warenwritschaftssystem_der_Segitztherme.Controllers
 {
     public class LagerController : Controller
     {
-        private readonly DataApplicationDbContext _context;
+        private readonly WarenwirtschaftContext _context;
 
-        public LagerController(DataApplicationDbContext context)
+        public LagerController(WarenwirtschaftContext context)
         {
             _context = context;
         }
