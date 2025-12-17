@@ -1,0 +1,110 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="container-fluid mt-4">
+    <h2 class="fw-semibold mb-4">Dashboard – Lagerkennzahlen</h2>
+
+    ```
+    <!-- KPI Cards -->
+    <div class="row g-3 mb-4">
+        <div class="col-md-3">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <h6 class="text-muted">Gesamtbestand</h6>
+                    <h3 class="fw-bold">12.450</h3>
+                    <small class="text-success">+3,2 % zum Vormonat</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <h6 class="text-muted">Lagerauslastung</h6>
+                    <h3 class="fw-bold">78 %</h3>
+                    <small class="text-warning">Nahe Kapazitätsgrenze</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <h6 class="text-muted">Umschlagshäufigkeit</h6>
+                    <h3 class="fw-bold">4,6</h3>
+                    <small class="text-success">Stabil</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <h6 class="text-muted">Kritische Artikel</h6>
+                    <h3 class="fw-bold text-danger">7</h3>
+                    <small class="text-danger">Handlungsbedarf</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Placeholder für Diagramme (ohne Scripts) -->
+    <div class="row g-4 mb-4">
+        <div class="col-md-8">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-header bg-white fw-semibold">Bestandsentwicklung</div>
+                <div class="card-body text-muted text-center py-5">
+                    Diagramm (Backend / Reporting-Modul)
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-header bg-white fw-semibold">Lagerauslastung nach Bereich</div>
+                <div class="card-body text-muted text-center py-5">
+                    Diagramm (Backend / Reporting-Modul)
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Engpass- & Trendübersicht -->
+    <div class="card shadow-sm border-0">
+        <div class="card-header bg-white d-flex justify-content-between align-items-center">
+            <span class="fw-semibold">Engpass- & Trendanalyse</span>
+            <div>
+                <a href="#" class="btn btn-outline-secondary btn-sm">Export PDF</a>
+                <a href="#" class="btn btn-outline-secondary btn-sm">Export Excel</a>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>Artikel</th>
+                        <th>Lager</th>
+                        <th>Bestand</th>
+                        <th>Mindestbestand</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Handtücher Premium</td>
+                        <td>Hauptlager</td>
+                        <td>45</td>
+                        <td>100</td>
+                        <td><span class="badge bg-danger">Kritisch</span></td>
+                    </tr>
+                    <tr>
+                        <td>Chlor 25kg</td>
+                        <td>Chemielager</td>
+                        <td>120</td>
+                        <td>80</td>
+                        <td><span class="badge bg-success">OK</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    ```
+
+</div>

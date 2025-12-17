@@ -20,10 +20,26 @@ namespace Warenwritschaftssystem_der_Segitztherme.Controllers
         }
 
         // GET: Lagerplatz
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string suchString)
         {
-            return View(await _context.Lagerplaetze.ToListAsync());
+            var lagerplaetze = _context.Lagerplaetze.AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(suchString))
+            {
+                lagerplaetze = lagerplaetze
+                    .Where(lp => lp.LagerPlatzName.Contains(suchString));
+            }
+            else
+            {
+                suchString = string.Empty;
+            }
+
+            ViewData["CurrentFilter"] = suchString;
+
+            return View(await lagerplaetze.ToListAsync());
         }
+
+
 
         // GET: Lagerplatz/Details/5
         public async Task<IActionResult> Details(int? id)

@@ -1,13 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
-	<PropertyGroup>
-		<TargetFramework>net8.0</TargetFramework>
-		<Nullable>enable</Nullable>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<RootNamespace>Warenwritschaftssystem_der_Segitztherme</RootNamespace>
-	</PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>Warenwritschaftssystem_der_Segitztherme</RootNamespace>
+  </PropertyGroup>
+
   <ItemGroup>
-    <Folder Include="Views\Lagerplatz\" />
+    <Content Remove="Views\Shared\partialViewDashboard.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
