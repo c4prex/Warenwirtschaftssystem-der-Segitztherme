@@ -69,14 +69,20 @@ namespace Warenwritschaftssystem_der_Segitztherme.Controllers
 
 
         // POST: Lager/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("LagerID,Beschreibung")] Lager lager)
-        {
+        {           
             if (ModelState.IsValid)
             {
+                // Prüfe ob Lager mit gleichem Namen bereits existiert
+                var existiert = await _context.Lager.AnyAsync(l => l.Beschreibung.ToLower() == lager.Beschreibung.ToLower());
+                if (existiert)
+                {
+                    ModelState.AddModelError("Beschreibung", "Ein Lager mit diesem Name existiert bereits.");
+                    return View(lager);
+                }
+
                 _context.Add(lager);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -101,8 +107,6 @@ namespace Warenwritschaftssystem_der_Segitztherme.Controllers
         }
 
         // POST: Lager/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("LagerID,Beschreibung")] Lager lager)
@@ -110,14 +114,25 @@ namespace Warenwritschaftssystem_der_Segitztherme.Controllers
             if (id != lager.LagerID)
             {
                 return NotFound();
-            }
-
+            }            
+            
             if (ModelState.IsValid)
             {
+                // Prüfe ob ein ANDERES Lager mit gleichem Namen bereits existiert
+                var existiert = await _context.Lager
+                    .AnyAsync(l => l.Beschreibung.ToLower() == lager.Beschreibung.ToLower()
+                                && l.LagerID != lager.LagerID);
+
+                if (existiert)
+                {
+                    ModelState.AddModelError("Beschreibung", "Ein Lager mit diesem Name existiert bereits.");
+                    return View(lager);
+                }
                 try
                 {
                     _context.Update(lager);
                     await _context.SaveChangesAsync();
+                    TempData["SuccessMessage"] = "Lager wurde erfolgreich aktualisiert!";
                 }
                 catch (DbUpdateConcurrencyException)
                 {
