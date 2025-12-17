@@ -5,38 +5,38 @@ ViewData["Title"] = "Home Page";
 
 @* Für erste Kachel *@
 <style>
-    .kachel {
-        display: inline-block;
-        width: 200px;
-        height: 150px;
-        text-align: center;
-        text-decoration: none; /* kein Unterstrich */
-        color: black; /* Textfarbe */
-        border: 3px solid black;
-        border-radius: 8px;
-        padding: 10px;
-        margin: 10px;
-        background-color: white;
-        transition: 0.3s;
-        float: left;
-    }
+	.kachel {
+		display: inline-block;
+		width: 200px;
+		height: 150px;
+		text-align: center;
+		text-decoration: none; /* kein Unterstrich */
+		color: black; /* Textfarbe */
+		border: 3px solid black;
+		border-radius: 8px;
+		padding: 10px;
+		margin: 10px;
+		background-color: white;
+		transition: 0.3s;
+		float: left;
+	}
 
 
-        .kachel:hover {
-            background-color: whitesmoke;
-            transform: scale(1.05); /* kleiner Zoom-Effekt */
-        }
+		.kachel:hover {
+			background-color: whitesmoke;
+			transform: scale(1.05); /* kleiner Zoom-Effekt */
+		}
 
-        .kachel img {
-            width: 50%;
-            height: 50%;
-            border-radius: 4px;
-        }
+		.kachel img {
+			width: 50%;
+			height: 50%;
+			border-radius: 4px;
+		}
 
-        .kachel figcaption {
-            margin-top: 8px;
-            font-weight: bold;
-        }
+		.kachel figcaption {
+			margin-top: 8px;
+			font-weight: bold;
+		}
 </style>
 
 <h1>APPs der Segitztherme</h1>
@@ -44,84 +44,61 @@ ViewData["Title"] = "Home Page";
 <div></div>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Kacheln im Div</title>
-    <style>
-        .container {
-            display: flex; /* ordnet die Kacheln nebeneinander */
-            gap: 40px; /* Abstand zwischen den Kacheln */
-            flex-wrap: wrap; /* Zeilenumbruch bei vielen Kacheln */
-            padding: 10px;
-            background: white;
-        }
+	<meta charset="UTF-8">
+	<title>Kacheln im Div</title>
+	<style>
+		.container {
+			display: flex; /* ordnet die Kacheln nebeneinander */
+			gap: 40px; /* Abstand zwischen den Kacheln */
+			flex-wrap: wrap; /* Zeilenumbruch bei vielen Kacheln */
+			padding: 10px;
+			background: white;
+		}
 
-        .tile {
-            width: 100px;
-            height: 100px;
-            background-color: lightblue;
-            color: black;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: transform 0.2s, background-color 0.3s;
-        }
+		.tile {
+			width: 100px;
+			height: 100px;
+			background-color: lightblue;
+			color: black;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border-radius: 10px;
+			cursor: pointer;
+			transition: transform 0.2s, background-color 0.3s;
+		}
 
-            .tile:hover {
-                transform: scale(1.05);
-                background-color: #45a049;
-            }
-    </style>
+			.tile:hover {
+				transform: scale(1.05);
+				background-color: #45a049;
+			}
+	</style>
 </head>
 <body>
-<<<<<<< HEAD
-    <div class="container">
-        @* Erste Kachel Lagerverwaltung *@
-        <a href="Lager/Index" class="kachel">
-            <figure>
-                <img src="/png/monitoring.png"
-                     alt="Lagerverwaltung" />
-                <figcaption>Lagermonitor</figcaption>
-            </figure>
-        </a>
-        <a href="Lagerplatz/Index" class="kachel">
-            <figure>
-                <img src="/png/rack.png"
-=======
-        <div class="container">
-        @* Erste Kachel Lagerverwaltung *@
-        <a href="Lager/Startseite" class="kachel">
-            <figure>
-                <img src="/png/monitoring.png"
+	<div class="container">
+		@* Erste Kachel Lagerverwaltung *@
+		<a href="Lager/Startseite" class="kachel">
+			<figure>
+				<img src="/png/monitoring.png"
 					 alt="Lagerverwaltung" />
-                <figcaption>Lagermonitor</figcaption>
-            </figure>
-        </a>
-        <a href="Lager/Startseite" class="kachel">
-            <figure>
-                <img src="/png/rack.png" 
->>>>>>> 2e05032ba51dbfc750097c5d6c15d5c3b6a83c38
-                     alt="Lagerplatzverwaltung" />
-                <figcaption>Lagerplatzverwaltung</figcaption>
-            </figure>
-        </a>
-        <a href="/Lager" class="kachel">
-            <figure>
-                <img src="/png/store.png"
-                     alt="Lagerplatzverwaltung" />
-                <figcaption>Hallenverwaltung</figcaption>
-            </figure>
-        </a>
-<<<<<<< HEAD
-    </div>
-</body>
-</html>
-=======
-        </div>
+				<figcaption>Lagermonitor</figcaption>
+			</figure>
+		</a>
+		<a href="Lager/Startseite" class="kachel">
+			<figure>
+				<img src="/png/rack.png"
+					 alt="Lagerplatzverwaltung" />
+				<figcaption>Lagerplatzverwaltung</figcaption>
+			</figure>
+		</a>
+		<a href="/Lager" class="kachel">
+			<figure>
+				<img src="/png/store.png"
+					 alt="Lagerplatzverwaltung" />
+				<figcaption>Hallenverwaltung</figcaption>
+			</figure>
+		</a>
+	</div>
 </body>
 </html>
 
-
-
->>>>>>> 2e05032ba51dbfc750097c5d6c15d5c3b6a83c38

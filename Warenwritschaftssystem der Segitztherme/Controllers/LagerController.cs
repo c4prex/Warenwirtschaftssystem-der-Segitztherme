@@ -1,11 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using NuGet.Packaging.Signing;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Warenwritschaftssystem_der_Segitztherme.Data;
 using Warenwritschaftssystem_der_Segitztherme.Models;
 
@@ -20,7 +14,7 @@ namespace Warenwritschaftssystem_der_Segitztherme.Controllers
             _context = context;
         }
 
-<<<<<<< HEAD
+
         [HttpPost]
         public async Task<IActionResult> DeleteSelection(List<int> selectRow)
         {
@@ -43,15 +37,6 @@ namespace Warenwritschaftssystem_der_Segitztherme.Controllers
         }
 
   
-=======
-        public IActionResult Startseite()
-        {
-            return View();
-        }
-
-
->>>>>>> 2e05032ba51dbfc750097c5d6c15d5c3b6a83c38
-
         // GET: Lager
         public async Task<IActionResult> Index()
         {
