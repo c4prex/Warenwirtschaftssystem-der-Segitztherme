@@ -1,35 +1,83 @@
 ﻿@model IEnumerable<Warenwritschaftssystem_der_Segitztherme.Models.Lager>
 
 @{
-    ViewData["Title"] = "Index";
+	ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<style>
+	.table-bordered th,
+	.table-bordered td {
+		border: 2px solid #000; /* dicke schwarze Linien */
+	}
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Beschreibung)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Beschreibung)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.LagerID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.LagerID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.LagerID">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+	.table-bordered {
+		border: 2px solid #000; /* äußerer Tabellenrand */
+	}
+</style>
+
+<br />
+<h1 style="text-align:center;">Hallenverwaltung</h1>
+<br />
+
+<div class="container mt-5">
+	<div class="card shadow-sm table-bored border-1">
+		<div class="card-header bg-white border-bottom d-flex justify-content-between align-items-center"> <h4 class="mb-0 fw-semibold"></h4> <a asp-action="Create" class="btn btn-primary"> Neuen Lager erstellen </a> </div> <div class="table-responsive">
+			<form asp-action="DeleteSelection" method="post">
+				<table class="table table-hover align-middle mb-0">
+					<thead class="table-light">
+						<tr>
+							<th></th>
+							<th>Name</th>
+							<th class="text-end">Aktionen</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach (var item in Model)
+						{
+							<tr>
+								<td>
+									<input type="checkbox" name="selectRow" value="@item.LagerID" class="rowCheckbox" />
+								</td>
+								<td class="fw-medium">@item.Beschreibung</td>
+								<td class="text-end">
+									<a asp-action="Edit" asp-route-id="@item.LagerID" class="btn btn-sm btn-outline-primary">Edit</a>
+									<a asp-action="Details" asp-route-id="@item.LagerID" class="btn btn-sm btn-outline-secondary">Details</a>
+								</td>
+							</tr>
+						}
+					</tbody>
+				</table>
+				<div class="card-header bg-white border-bottom d-flex justify-content-between align-items-center">
+					<!-- Button ist sichtbar, aber standardmäßig deaktiviert -->
+					<button type="submit" id="deleteButton" class="btn btn-danger" disabled
+							onclick="return confirm('Möchten Sie die ausgewählten Einträge wirklich löschen?');">
+						Ausgewählte löschen
+					</button>
+				</div>
+
+			</form>
+		</div>
+	</div>
+</div>
+<script>
+	document.addEventListener("DOMContentLoaded", function () {
+		const checkboxes = document.querySelectorAll(".rowCheckbox");
+		const deleteButton = document.getElementById("deleteButton");
+
+		function updateButtonState() {
+			const anyChecked = Array.from(checkboxes).some(cb => cb.checked);
+			deleteButton.disabled = !anyChecked; // aktivieren/deaktivieren
+		}
+
+		// Eventlistener für alle Checkboxen
+		checkboxes.forEach(cb => {
+			cb.addEventListener("change", updateButtonState);
+		});
+
+		// Initial prüfen
+		updateButtonState();
+	});
+</script>
+
+
+

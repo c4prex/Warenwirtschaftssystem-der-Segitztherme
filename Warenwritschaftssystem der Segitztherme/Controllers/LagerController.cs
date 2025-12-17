@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Warenwritschaftssystem_der_Segitztherme.Data;
 using Warenwritschaftssystem_der_Segitztherme.Models;
@@ -19,6 +14,29 @@ namespace Warenwritschaftssystem_der_Segitztherme.Controllers
             _context = context;
         }
 
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteSelection(List<int> selectRow)
+        {
+            if (selectRow == null || !selectRow.Any())
+            {
+                return BadRequest("Keine IDs angegeben.");
+            }
+
+            var lagerItems = await _context.Lager.Where(l => selectRow.Contains(l.LagerID)).ToListAsync();
+
+            if (!lagerItems.Any())
+            {
+                return NotFound("Keine passenden Datensätze gefunden.");
+            }
+
+            _context.Lager.RemoveRange(lagerItems);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
+
+  
         // GET: Lager
         public async Task<IActionResult> Index()
         {
@@ -48,6 +66,7 @@ namespace Warenwritschaftssystem_der_Segitztherme.Controllers
         {
             return View();
         }
+
 
         // POST: Lager/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -153,5 +172,6 @@ namespace Warenwritschaftssystem_der_Segitztherme.Controllers
         {
             return _context.Lager.Any(e => e.LagerID == id);
         }
+
     }
 }
