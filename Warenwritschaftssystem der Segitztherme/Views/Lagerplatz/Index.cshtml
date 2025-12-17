@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<Warenwritschaftssystem_der_Segitztherme.Models.Lagerplatz>
-
 @{
     ViewData["Title"] = "Lagerplätze";
 }
@@ -13,51 +12,106 @@
             </a>
         </div>
 
-        <form class="d-flex" asp-action="Index" asp-controller="Lagerplatz">
-            <input name="suchstring" class="form-control me-1" type="search" placeholder="Suche" aria-label="Suche" value="@ViewData["CurrentFilter"]">
-            <button class="btn btn-dark" type="submit">Suchen</button>
-            @* <button class="btn btn-dark" asp-action="Index" class="text-dark">Zurücksetzen</button> *@
-            <a asp-action="Index"
-               asp-controller="Lagerplatz"
-               class="btn btn-link text-dark">
-                Zurücksetzen
-            </a>
+        @if (ViewBag.LagerExist == false)
+        {
+            <!-- Warnung wenn keine Lager existieren -->
+            <div class="alert alert-warning m-3" role="alert">
+                <h5 class="alert-heading">
+                    <i class="bi bi-exclamation-triangle"></i> Keine Lager vorhanden
+                </h5>
+                <p>Es sind noch keine Lager im System erfasst. Bitte legen Sie zuerst ein Lager an, bevor Sie Lagerplätze erstellen.</p>
+                <hr>
+                <a asp-controller="Lager" asp-action="Create" class="btn btn-warning">
+                    <i class="bi bi-plus-circle"></i> Erstes Lager anlegen
+                </a>
+            </div>
+        }
+        else
+        {
+            <!-- Suchformular -->
+            <form class="d-flex m-3" asp-action="Index" asp-controller="Lagerplatz">
+                <input name="suchstring" class="form-control me-1" type="search" placeholder="Suche" aria-label="Suche" value="@ViewData["CurrentFilter"]">
+                <button class="btn btn-dark" type="submit">Suchen</button>
+                <a asp-action="Index" asp-controller="Lagerplatz" class="btn btn-link text-dark">
+                    Zurücksetzen
+                </a>
+            </form>
 
-        </form>
-        
-			
-        <div class="table-responsive">
-            <table class="table table-hover align-middle mb-0">
-                <thead class="table-light">
-                    <tr>
-                        <th>Name</th>
-                        <th>Lager</th>
-                        <th>HU</th>
-                        <th>Max. Gewicht</th>
-                        <th>Bereich</th>
-                        <th>Typ</th>
-                        <th class="text-end">Aktionen</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
+            <!-- Tabelle -->
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="table-light">
                         <tr>
-                            <td class="fw-medium">@item.LagerPlatzName</td>
-                            <td>@item.LagerID</td>
-                            <td>@item.HUAnzahl</td>
-                            <td>@item.MaxGewicht kg</td>
-                            <td>@item.LagerBereich</td>
-                            <td>@item.LagerTyp</td>
-                            <td class="text-end">
-                                <a asp-action="Details" asp-route-id="@item.LagerPlatzID" class="btn btn-sm btn-outline-secondary">Details</a>
-                                <a asp-action="Edit" asp-route-id="@item.LagerPlatzID" class="btn btn-sm btn-outline-primary">Edit</a>
-                                <a asp-action="Delete" asp-route-id="@item.LagerPlatzID" class="btn btn-sm btn-outline-danger">Delete</a>
-                            </td>
+                            <th>Name</th>
+                            <th>Lager</th>
+                            <th>HU</th>
+                            <th>Max. Gewicht</th>
+                            <th>Bereich</th>
+                            <th>Typ</th>
+                            <th class="text-end">Aktionen</th>
                         </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
+                    </thead>
+                    <tbody>
+                        @if (!Model.Any())
+                        {
+                            <tr>
+                                <td colspan="7" class="text-center text-muted py-4">
+                                    <i class="bi bi-inbox"></i> Keine Lagerplätze gefunden
+                                </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="fw-medium">@item.LagerPlatzName</td>
+                                    <td>@item.LagerID</td>
+                                    <td>@item.HUAnzahl</td>
+                                    <td>@item.MaxGewicht kg</td>
+                                    <td>@item.LagerBereich</td>
+                                    <td>@item.LagerTyp</td>
+                                    <td class="text-end">
+                                        <a asp-action="Details" asp-route-id="@item.LagerPlatzID" class="btn btn-sm btn-outline-secondary">Details</a>
+                                        <a asp-action="Edit" asp-route-id="@item.LagerPlatzID" class="btn btn-sm btn-outline-primary">Edit</a>
+                                        <a asp-action="Delete" asp-route-id="@item.LagerPlatzID" class="btn btn-sm btn-outline-danger">Delete</a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
     </div>
 </div>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="toast-container position-fixed top-0 end-0 p-3">
+        <div class="toast show" role="alert">
+            <div class="toast-header bg-success text-white">
+                <strong class="me-auto">Erfolg</strong>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button>
+            </div>
+            <div class="toast-body">
+                @TempData["SuccessMessage"]
+            </div>
+        </div>
+    </div>
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="toast-container position-fixed top-0 end-0 p-3">
+        <div class="toast show" role="alert">
+            <div class="toast-header bg-danger text-white">
+                <strong class="me-auto">Fehler</strong>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button>
+            </div>
+            <div class="toast-body">
+                @TempData["ErrorMessage"]
+            </div>
+        </div>
+    </div>
+}

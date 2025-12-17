@@ -22,6 +22,15 @@ namespace Warenwritschaftssystem_der_Segitztherme.Controllers
         // GET: Lagerplatz
         public async Task<IActionResult> Index(string suchString)
         {
+            // Prüfe ob Lager existieren
+            var lagerExist = await _context.Lager.AnyAsync();
+            ViewBag.LagerExist = lagerExist;
+
+            if (!lagerExist)
+            {
+                return View(new List<Lagerplatz>()); // Leere Liste zurückgeben
+            }
+
             var lagerplaetze = _context.Lagerplaetze.AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(suchString))
@@ -60,8 +69,18 @@ namespace Warenwritschaftssystem_der_Segitztherme.Controllers
         }
 
         // GET: Lagerplatz/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            // Prüfe ob Lager existieren
+            var lagerExist = await _context.Lager.AnyAsync();
+            if (!lagerExist)
+            {
+                TempData["ErrorMessage"] = "Bitte legen Sie zuerst ein Lager an, bevor Sie Lagerplätze erstellen.";
+                return RedirectToAction("Index");
+            }
+
+            // Lade Lager für Dropdown
+            ViewBag.LagerListe = new SelectList(await _context.Lager.ToListAsync(), "LagerID", "Beschreibung");
             return View();
         }
 
@@ -76,6 +95,7 @@ namespace Warenwritschaftssystem_der_Segitztherme.Controllers
             {
                 _context.Add(lagerplatz);
                 await _context.SaveChangesAsync();
+                TempData["SuccessMessage"] = $"Lagerplatz '{lagerplatz.LagerPlatzName}' wurde erfolgreich angelegt!";
                 return RedirectToAction(nameof(Index));
             }
             return View(lagerplatz);
@@ -94,6 +114,10 @@ namespace Warenwritschaftssystem_der_Segitztherme.Controllers
             {
                 return NotFound();
             }
+
+            // Lade Lager für Dropdown
+            ViewBag.LagerListe = new SelectList(await _context.Lager.ToListAsync(), "LagerID", "Beschreibung", lagerplatz.LagerID);
+
             return View(lagerplatz);
         }
 
@@ -115,6 +139,7 @@ namespace Warenwritschaftssystem_der_Segitztherme.Controllers
                 {
                     _context.Update(lagerplatz);
                     await _context.SaveChangesAsync();
+                    TempData["SuccessMessage"] = "Lagerplatz wurde erfolgreich aktualisiert!";
                 }
                 catch (DbUpdateConcurrencyException)
                 {
