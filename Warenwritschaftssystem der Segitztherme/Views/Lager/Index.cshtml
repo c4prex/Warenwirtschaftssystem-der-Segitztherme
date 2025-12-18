@@ -4,14 +4,6 @@
     ViewData["Title"] = "Lagerübersicht";
 }
 
-<h2 class="mb-4">Lagerübersicht</h2>
-
-<div class="d-flex justify-content-end mb-3">
-    <a asp-action="Create" class="btn btn-success">
-        + Neues Lager anlegen
-    </a>
-</div>
-
 <div class="row g-4">
     @foreach (var lager in Model)
     {

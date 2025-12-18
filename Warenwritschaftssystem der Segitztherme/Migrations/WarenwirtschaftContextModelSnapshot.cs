@@ -36,13 +36,7 @@ namespace Warenwritschaftssystem_der_Segitztherme.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Bestand")
-                        .HasColumnType("INTEGER");
-
                     b.Property<int?>("LagerID")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("Mindestbestand")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("ArtikelID");
@@ -135,6 +129,30 @@ namespace Warenwritschaftssystem_der_Segitztherme.Migrations
                         .HasForeignKey("LagerID");
 
                     b.Navigation("Lager");
+                });
+
+            modelBuilder.Entity("Warenwritschaftssystem_der_Segitztherme.Models.HU", b =>
+                {
+                    b.HasOne("Warenwritschaftssystem_der_Segitztherme.Models.Artikel", null)
+                        .WithMany()
+                        .HasForeignKey("ArtikelID")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Warenwritschaftssystem_der_Segitztherme.Models.Lager", null)
+                        .WithMany()
+                        .HasForeignKey("LagerID")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Warenwritschaftssystem_der_Segitztherme.Models.Lagerplatz", b =>
+                {
+                    b.HasOne("Warenwritschaftssystem_der_Segitztherme.Models.Lager", null)
+                        .WithMany()
+                        .HasForeignKey("LagerID")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Warenwritschaftssystem_der_Segitztherme.Models.Lager", b =>

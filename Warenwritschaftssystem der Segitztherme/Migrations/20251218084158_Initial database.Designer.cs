@@ -11,13 +11,8 @@ using Warenwritschaftssystem_der_Segitztherme.Data;
 namespace Warenwritschaftssystem_der_Segitztherme.Migrations
 {
     [DbContext(typeof(WarenwirtschaftContext))]
-<<<<<<<< HEAD:Warenwritschaftssystem der Segitztherme/Migrations/20251216090609_AddForeignKeys.Designer.cs
-    [Migration("20251216090609_AddForeignKeys")]
-    partial class AddForeignKeys
-========
-    [Migration("20251218065545_initial-create")]
-    partial class initialcreate
->>>>>>>> davidDev:Warenwritschaftssystem der Segitztherme/Migrations/20251218065545_initial-create.Designer.cs
+    [Migration("20251218084158_Initial database")]
+    partial class Initialdatabase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -44,13 +39,7 @@ namespace Warenwritschaftssystem_der_Segitztherme.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Bestand")
-                        .HasColumnType("INTEGER");
-
                     b.Property<int?>("LagerID")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("Mindestbestand")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("ArtikelID");
@@ -136,7 +125,15 @@ namespace Warenwritschaftssystem_der_Segitztherme.Migrations
                     b.ToTable("Lagerplaetze");
                 });
 
-<<<<<<<< HEAD:Warenwritschaftssystem der Segitztherme/Migrations/20251216090609_AddForeignKeys.Designer.cs
+            modelBuilder.Entity("Warenwritschaftssystem_der_Segitztherme.Models.Artikel", b =>
+                {
+                    b.HasOne("Warenwritschaftssystem_der_Segitztherme.Models.Lager", "Lager")
+                        .WithMany("Artikel")
+                        .HasForeignKey("LagerID");
+
+                    b.Navigation("Lager");
+                });
+
             modelBuilder.Entity("Warenwritschaftssystem_der_Segitztherme.Models.HU", b =>
                 {
                     b.HasOne("Warenwritschaftssystem_der_Segitztherme.Models.Artikel", null)
@@ -159,20 +156,11 @@ namespace Warenwritschaftssystem_der_Segitztherme.Migrations
                         .HasForeignKey("LagerID")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
-========
-            modelBuilder.Entity("Warenwritschaftssystem_der_Segitztherme.Models.Artikel", b =>
-                {
-                    b.HasOne("Warenwritschaftssystem_der_Segitztherme.Models.Lager", "Lager")
-                        .WithMany("Artikel")
-                        .HasForeignKey("LagerID");
-
-                    b.Navigation("Lager");
                 });
 
             modelBuilder.Entity("Warenwritschaftssystem_der_Segitztherme.Models.Lager", b =>
                 {
                     b.Navigation("Artikel");
->>>>>>>> davidDev:Warenwritschaftssystem der Segitztherme/Migrations/20251218065545_initial-create.Designer.cs
                 });
 #pragma warning restore 612, 618
         }
