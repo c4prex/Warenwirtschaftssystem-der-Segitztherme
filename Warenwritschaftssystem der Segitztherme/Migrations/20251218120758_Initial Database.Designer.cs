@@ -11,8 +11,8 @@ using Warenwritschaftssystem_der_Segitztherme.Data;
 namespace Warenwritschaftssystem_der_Segitztherme.Migrations
 {
     [DbContext(typeof(WarenwirtschaftContext))]
-    [Migration("20251218084158_Initial database")]
-    partial class Initialdatabase
+    [Migration("20251218120758_Initial Database")]
+    partial class InitialDatabase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -58,13 +58,13 @@ namespace Warenwritschaftssystem_der_Segitztherme.Migrations
                     b.Property<int>("AnzahlArtikel")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("ArtikelID")
+                    b.Property<int?>("ArtikelID")
                         .HasColumnType("INTEGER");
 
                     b.Property<float>("GewichtHu")
                         .HasColumnType("REAL");
 
-                    b.Property<int>("LagerID")
+                    b.Property<int?>("LagerID")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("HuId");
@@ -139,14 +139,12 @@ namespace Warenwritschaftssystem_der_Segitztherme.Migrations
                     b.HasOne("Warenwritschaftssystem_der_Segitztherme.Models.Artikel", null)
                         .WithMany()
                         .HasForeignKey("ArtikelID")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("Warenwritschaftssystem_der_Segitztherme.Models.Lager", null)
                         .WithMany()
                         .HasForeignKey("LagerID")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("Warenwritschaftssystem_der_Segitztherme.Models.Lagerplatz", b =>

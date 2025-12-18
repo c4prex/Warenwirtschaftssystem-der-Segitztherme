@@ -5,7 +5,7 @@
 namespace Warenwritschaftssystem_der_Segitztherme.Migrations
 {
     /// <inheritdoc />
-    public partial class Initialdatabase : Migration
+    public partial class InitialDatabase : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -75,8 +75,8 @@ namespace Warenwritschaftssystem_der_Segitztherme.Migrations
                 {
                     HuId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    ArtikelID = table.Column<int>(type: "INTEGER", nullable: false),
-                    LagerID = table.Column<int>(type: "INTEGER", nullable: false),
+                    ArtikelID = table.Column<int>(type: "INTEGER", nullable: true),
+                    LagerID = table.Column<int>(type: "INTEGER", nullable: true),
                     GewichtHu = table.Column<float>(type: "REAL", nullable: false),
                     AnzahlArtikel = table.Column<int>(type: "INTEGER", nullable: false)
                 },

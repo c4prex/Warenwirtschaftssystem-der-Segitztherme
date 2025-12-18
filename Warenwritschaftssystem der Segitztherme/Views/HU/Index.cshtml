@@ -4,50 +4,65 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1 style="text-align:center;">Übersicht der Handling Unit</h1>
+<br />
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ArtikelID)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LagerID)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.GewichtHu)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AnzahlArtikel)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ArtikelID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LagerID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.GewichtHu)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AnzahlArtikel)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.HuId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.HuId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.HuId">Delete</a>
-            </td>
-        </tr>
+<div class="text-right mb-3" style="text-align:right">
+    <a asp-action="Create" class="btn btn-primary">HU erstellen</a>
+</div>
+
+<form asp-action="DeleteSelected" method="post" onsubmit="return confirmDelete();">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    <!-- Checkbox für "Alle auswählen" -->
+                    <input type="checkbox" id="selectAll" />
+                </th>
+                <th>@Html.DisplayNameFor(model => model.HuId)</th>
+                <th>@Html.DisplayNameFor(model => model.GewichtHu)</th>
+                <th>@Html.DisplayNameFor(model => model.AnzahlArtikel)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <input type="checkbox" name="selectedIds" value="@item.HuId" />
+                    </td>
+                    <td>@Html.DisplayFor(modelItem => item.HuId)</td>
+                    <td>@Html.DisplayFor(modelItem => item.GewichtHu)</td>
+                    <td>@Html.DisplayFor(modelItem => item.AnzahlArtikel)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <button type="submit" class="btn btn-danger">Ausgewählte löschen</button>
+</form>
+
+@section Scripts {
+    <script>
+        // "Alle auswählen" Checkbox
+        document.getElementById("selectAll").addEventListener("click", function () {
+            var checkboxes = document.querySelectorAll("input[name='selectedIds']");
+            for (var cb of checkboxes) {
+                cb.checked = this.checked;
+            }
+        });
+
+        // Bestätigungsdialog beim Löschen
+        function confirmDelete() {
+            var selected = document.querySelectorAll("input[name='selectedIds']:checked");
+            if (selected.length === 0) {
+                alert("Bitte wählen Sie mindestens eine HU aus.");
+                return false;
+            }
+            return confirm("Sind Sie sicher, dass Sie die ausgewählten Handling Units löschen möchten?");
+        }
+    </script>
 }
-    </tbody>
-</table>
+
+
+

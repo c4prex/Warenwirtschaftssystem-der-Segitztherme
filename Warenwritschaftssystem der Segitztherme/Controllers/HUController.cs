@@ -43,6 +43,20 @@ namespace Warenwritschaftssystem_der_Segitztherme.Controllers
             return View(hU);
         }
 
+        // löschen von mehreren Eintrgeä
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteSelected(int[] selectedIds)
+        {
+            if (selectedIds != null && selectedIds.Length > 0)
+            {
+                var hus = _context.HUs.Where(h => selectedIds.Contains(h.HuId));
+                _context.HUs.RemoveRange(hus);
+                await _context.SaveChangesAsync();
+            }
+            return RedirectToAction(nameof(Index));
+        }
+
         // GET: HU/Create
         public IActionResult Create()
         {
@@ -54,7 +68,7 @@ namespace Warenwritschaftssystem_der_Segitztherme.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("HuId,ArtikelID,LagerID,GewichtHu,AnzahlArtikel")] HU hU)
+        public async Task<IActionResult> Create([Bind("HuId")] HU hU)
         {
             if (ModelState.IsValid)
             {
