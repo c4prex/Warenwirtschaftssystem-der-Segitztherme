@@ -1,0 +1,118 @@
+﻿@model Lagersystem.Models.Artikel
+
+@{
+    ViewData["Title"] = "Artikel anlegen";
+}
+
+<div class="card shadow-sm">
+    <div class="card-header">
+        <h5 class="mb-0">Neuen Artikel anlegen</h5>
+    </div>
+
+    <div class="card-body">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <div class="mb-3">
+                <label asp-for="ArtikelName" class="form-label"></label>
+                <input asp-for="ArtikelName" class="form-control" />
+                <span asp-validation-for="ArtikelName" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="ArtikelBeschreibung" class="form-label"></label>
+                <input asp-for="ArtikelBeschreibung" class="form-control" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="ArtikelGewicht" class="form-label"></label>
+                <input asp-for="ArtikelGewicht" class="form-control" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="ArtikelMaße" class="form-label"></label>
+                <input asp-for="ArtikelMaße" class="form-control" />
+            </div>
+          
+
+            <div class="d-flex justify-content-between">
+                <a asp-action="Index" class="btn btn-secondary">Abbrechen</a>
+                <button type="submit" class="btn btn-success">Speichern</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@* @model Lagersystem.Models.Artikel
+
+@{
+    ViewData["Title"] = "Artikel anlegen";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-white border-bottom">
+                    <h4 class="mb-0 fw-semibold">Neuen Artikel anlegen</h4>
+                    <small class="text-muted">Bitte alle erforderlichen Informationen ausfüllen</small>
+                </div>
+
+                <div class="card-body">
+                    <form asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                        <div class="mb-3">
+                            <label asp-for="ArtikelName" class="form-label"></label>
+                            <input asp-for="ArtikelName" class="form-control" />
+                            <span asp-validation-for="ArtikelName" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="ArtikelBeschreibung" class="form-label"></label>
+                            <input asp-for="ArtikelBeschreibung" class="form-control" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="ArtikelGewicht" class="form-label"></label>
+                            <input asp-for="ArtikelGewicht" class="form-control" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="ArtikelMaße" class="form-label"></label>
+                            <input asp-for="ArtikelMaße" class="form-control" />
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <a asp-action="Index" class="btn btn-secondary">Abbrechen</a>
+                            <button type="submit" class="btn btn-success">Speichern</button>
+                        </div>
+                   
+
+                        <hr />
+
+                        <!-- Aktionen -->
+                        <div class="d-flex justify-content-between align-items-center">
+                            <a asp-action="Index" class="btn btn-outline-secondary">
+                                Abbrechen
+                            </a>
+
+                            <button type="submit" class="btn btn-primary px-4">
+                                Artikel speichern
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+ *@

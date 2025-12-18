@@ -1,0 +1,55 @@
+﻿@model Lagersystem.Models.Lagerplatz
+
+@{
+    ViewData["Title"] = "Lagerplatz Details";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-bottom">
+                    <h4 class="mb-0 fw-semibold">Lagerplatz Details</h4>
+                </div>
+
+                <div class="card-body">
+                    <dl class="row mb-0">
+                        <dt class="col-5 text-muted">Lagerplatz</dt>
+                        <dd class="col-7 fw-medium">@Model.LagerPlatzName</dd>
+
+                        <dt class="col-5 text-muted">Lager ID</dt>
+                        <dd class="col-7">@Model.LagerID</dd>
+
+                        <dt class="col-5 text-muted">HU Anzahl</dt>
+                        <dd class="col-7">@Model.HUAnzahl</dd>
+
+                        <dt class="col-5 text-muted">Max. Gewicht</dt>
+                        <dd class="col-7">@Model.MaxGewicht kg</dd>
+
+                        <dt class="col-5 text-muted">Bereich</dt>
+                        <dd class="col-7">@Model.LagerBereich</dd>
+
+                        <dt class="col-5 text-muted">Typ</dt>
+                        <dd class="col-7">@Model.LagerTyp</dd>
+                    </dl>
+
+                    <hr />
+
+                    <div class="d-flex justify-content-between">
+                        <a asp-action="Index" class="btn btn-outline-secondary">
+                            Zur Übersicht
+                        </a>
+
+                        <a asp-action="Edit"
+                           asp-route-id="@Model.LagerPlatzID"
+                           class="btn btn-primary px-4">
+                            Bearbeiten
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,76 @@
+﻿@model Lagersystem.Models.Lagerplatz
+
+@{
+    ViewData["Title"] = "Lagerplatz bearbeiten";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-white border-bottom">
+                    <h4 class="mb-0 fw-semibold">Lagerplatz bearbeiten</h4>
+                </div>
+
+                <div class="card-body">
+                    <form asp-action="Edit">
+                        <input type="hidden" asp-for="LagerPlatzID" />
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger d-none"></div>
+
+                        <div class="mb-3">
+                            <label asp-for="LagerPlatzName" class="form-label"></label>
+                            <input asp-for="LagerPlatzName" class="form-control" />
+                            <span asp-validation-for="LagerPlatzName" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="LagerID" class="form-label"></label>
+                            <input asp-for="LagerID" class="form-control" />
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="HUAnzahl" class="form-label"></label>
+                                <input asp-for="HUAnzahl" class="form-control" />
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="MaxGewicht" class="form-label"></label>
+                                <input asp-for="MaxGewicht" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="LagerBereich" class="form-label"></label>
+                                <input asp-for="LagerBereich" class="form-control" />
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="LagerTyp" class="form-label"></label>
+                                <input asp-for="LagerTyp" class="form-control" />
+                            </div>
+                        </div>
+
+                        <hr />
+
+                        <div class="d-flex justify-content-between">
+                            <a asp-action="Index" class="btn btn-outline-secondary">
+                                Abbrechen
+                            </a>
+                            <button type="submit" class="btn btn-primary px-4">
+                                Änderungen speichern
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
