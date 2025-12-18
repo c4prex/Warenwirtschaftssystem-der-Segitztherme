@@ -37,6 +37,7 @@ namespace Warenwritschaftssystem_der_Segitztherme.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("TEXT");
 
+<<<<<<< HEAD
                     b.Property<DateTime?>("ErstelltAm")
                         .HasColumnType("TEXT");
 
@@ -50,6 +51,9 @@ namespace Warenwritschaftssystem_der_Segitztherme.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<int?>("GeaendertVon")
+=======
+                    b.Property<int?>("LagerID")
+>>>>>>> origin/dev
                         .HasColumnType("INTEGER");
 
                     b.HasKey("ArtikelID");
@@ -59,6 +63,9 @@ namespace Warenwritschaftssystem_der_Segitztherme.Migrations
                     b.HasIndex("ErstelltVon");
 
                     b.HasIndex("GeaendertVon");
+=======
+                    b.HasIndex("LagerID");
+>>>>>>> origin/dev
 
                     b.ToTable("Artikels");
                 });
@@ -188,6 +195,7 @@ namespace Warenwritschaftssystem_der_Segitztherme.Migrations
                     b.ToTable("Lagerplaetze");
                 });
 
+<<<<<<< HEAD
             modelBuilder.Entity("Warenwritschaftssystem_der_Segitztherme.Models.Mitarbeiter", b =>
                 {
                     b.Property<int>("MitarbeiterID")
@@ -259,6 +267,15 @@ namespace Warenwritschaftssystem_der_Segitztherme.Migrations
                     b.Navigation("ErstelltVonMitarbeiter");
 
                     b.Navigation("GeaendertVonMitarbeiter");
+=======
+            modelBuilder.Entity("Warenwritschaftssystem_der_Segitztherme.Models.Artikel", b =>
+                {
+                    b.HasOne("Warenwritschaftssystem_der_Segitztherme.Models.Lager", "Lager")
+                        .WithMany("Artikel")
+                        .HasForeignKey("LagerID");
+
+                    b.Navigation("Lager");
+>>>>>>> origin/dev
                 });
 
             modelBuilder.Entity("Warenwritschaftssystem_der_Segitztherme.Models.HU", b =>

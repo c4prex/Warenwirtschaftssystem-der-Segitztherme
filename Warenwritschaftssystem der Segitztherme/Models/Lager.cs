@@ -1,10 +1,14 @@
-﻿namespace Warenwritschaftssystem_der_Segitztherme.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Warenwritschaftssystem_der_Segitztherme.Models
 {
     public class Lager
     {
         public int LagerID { get; set; }
 
-        [Required(ErrorMessage = "Bitte eine Beschreibung eingeben.")]
+        [Required(ErrorMessage = "Beschreibung ist ein Pflichtfeld")]
+        [StringLength(200)]
         public string Beschreibung { get; set; }
 
         // Audit-Felder

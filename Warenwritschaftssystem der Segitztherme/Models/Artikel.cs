@@ -1,8 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System.ComponentModel.DataAnnotations;
 
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+=======
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System.ComponentModel.DataAnnotations;
+>>>>>>> origin/dev
 
 namespace Warenwritschaftssystem_der_Segitztherme.Models
 {
@@ -11,6 +15,7 @@ namespace Warenwritschaftssystem_der_Segitztherme.Models
         public int ArtikelID { get; set; }
 
         [Required]
+<<<<<<< HEAD
         [StringLength(200)]
 
         [Required]
@@ -21,6 +26,7 @@ namespace Warenwritschaftssystem_der_Segitztherme.Models
         public float ArtikelGewicht { get; set; }
         public float ArtikelMaße { get; set; }
 
+<<<<<<< HEAD
         // Audit-Felder
         public int? ErstelltVon { get; set; }
         public DateTime? ErstelltAm { get; set; }
