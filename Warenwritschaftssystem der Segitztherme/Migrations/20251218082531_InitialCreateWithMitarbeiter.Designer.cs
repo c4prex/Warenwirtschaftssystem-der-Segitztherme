@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Warenwritschaftssystem_der_Segitztherme.Data;
 
@@ -10,9 +11,11 @@ using Warenwritschaftssystem_der_Segitztherme.Data;
 namespace Warenwritschaftssystem_der_Segitztherme.Migrations
 {
     [DbContext(typeof(WarenwirtschaftContext))]
-    partial class WarenwirtschaftContextModelSnapshot : ModelSnapshot
+    [Migration("20251218082531_InitialCreateWithMitarbeiter")]
+    partial class InitialCreateWithMitarbeiter
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.22");

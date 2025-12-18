@@ -1,11 +1,29 @@
-﻿namespace Warenwritschaftssystem_der_Segitztherme.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Warenwritschaftssystem_der_Segitztherme.Models
 {
     public class Lager
     {
         public int LagerID { get; set; }
 
+        [Required(ErrorMessage = "Beschreibung ist ein Pflichtfeld")]
+        [StringLength(200)]
         public string Beschreibung { get; set; }
 
+        // Audit-Felder
+        public int? ErstelltVon { get; set; }
+        public DateTime? ErstelltAm { get; set; }
+
+        public int? GeaendertVon { get; set; }
+        public DateTime? GeaendertAm { get; set; }
+
+        // Navigation Properties
+        [ForeignKey("ErstelltVon")]
+        public Mitarbeiter? ErstelltVonMitarbeiter { get; set; }
+
+        [ForeignKey("GeaendertVon")]
+        public Mitarbeiter? GeaendertVonMitarbeiter { get; set; }
         public Lager()
         {
         }

@@ -1,8 +1,13 @@
-﻿namespace Warenwritschaftssystem_der_Segitztherme.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Warenwritschaftssystem_der_Segitztherme.Models
 {
     public class Lagerplatz
     {
         public int LagerPlatzID { get; set; }
+
+        [Required]
         public string LagerPlatzName { get; set; }
         public int LagerID { get; set; }
         public int HUAnzahl { get; set; }
@@ -10,6 +15,19 @@
         public string LagerBereich { get; set; }
         public string LagerTyp { get; set; }
 
+        // Audit-Felder
+        public int? ErstelltVon { get; set; }
+        public DateTime? ErstelltAm { get; set; }
+
+        public int? GeaendertVon { get; set; }
+        public DateTime? GeaendertAm { get; set; }
+
+        // Navigation Properties
+        [ForeignKey("ErstelltVon")]
+        public Mitarbeiter? ErstelltVonMitarbeiter { get; set; }
+
+        [ForeignKey("GeaendertVon")]
+        public Mitarbeiter? GeaendertVonMitarbeiter { get; set; }
         public Lagerplatz()
         {
         }

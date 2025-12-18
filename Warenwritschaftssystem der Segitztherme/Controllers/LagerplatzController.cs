@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Warenwritschaftssystem_der_Segitztherme.Data;
@@ -31,7 +27,9 @@ namespace Warenwritschaftssystem_der_Segitztherme.Controllers
                 return View(new List<Lagerplatz>()); // Leere Liste zurückgeben
             }
 
-            var lagerplaetze = _context.Lagerplaetze.AsQueryable();
+            var lagerplaetze = _context.Lagerplaetze
+                .Include(lp => lp.ErstelltVonMitarbeiter)
+                .Include(lp => lp.GeaendertVonMitarbeiter).AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(suchString))
             {
@@ -59,7 +57,10 @@ namespace Warenwritschaftssystem_der_Segitztherme.Controllers
             }
 
             var lagerplatz = await _context.Lagerplaetze
+                .Include(lp => lp.ErstelltVonMitarbeiter)
+                .Include(lp => lp.GeaendertVonMitarbeiter)
                 .FirstOrDefaultAsync(m => m.LagerPlatzID == id);
+
             if (lagerplatz == null)
             {
                 return NotFound();
@@ -93,6 +94,10 @@ namespace Warenwritschaftssystem_der_Segitztherme.Controllers
         {
             if (ModelState.IsValid)
             {
+                // Audit-Felder setzen
+                lagerplatz.ErstelltVon = 1; // TODO: Aus Login holen
+                lagerplatz.ErstelltAm = DateTime.Now;
+
                 _context.Add(lagerplatz);
                 await _context.SaveChangesAsync();
                 TempData["SuccessMessage"] = $"Lagerplatz '{lagerplatz.LagerPlatzName}' wurde erfolgreich angelegt!";
@@ -137,6 +142,9 @@ namespace Warenwritschaftssystem_der_Segitztherme.Controllers
             {
                 try
                 {
+                    // Audit-Felder setzen
+                    lagerplatz.GeaendertVon = 1; // TODO: Aus Login holen
+                    lagerplatz.GeaendertAm = DateTime.Now;
                     _context.Update(lagerplatz);
                     await _context.SaveChangesAsync();
                     TempData["SuccessMessage"] = "Lagerplatz wurde erfolgreich aktualisiert!";
@@ -166,6 +174,8 @@ namespace Warenwritschaftssystem_der_Segitztherme.Controllers
             }
 
             var lagerplatz = await _context.Lagerplaetze
+                 .Include(lp => lp.ErstelltVonMitarbeiter)
+                .Include(lp => lp.GeaendertVonMitarbeiter)
                 .FirstOrDefaultAsync(m => m.LagerPlatzID == id);
             if (lagerplatz == null)
             {
