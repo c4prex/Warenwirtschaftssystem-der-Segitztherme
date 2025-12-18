@@ -5,27 +5,11 @@
 namespace Warenwritschaftssystem_der_Segitztherme.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class initialcreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "Artikels",
-                columns: table => new
-                {
-                    ArtikelID = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    ArtikelName = table.Column<string>(type: "TEXT", nullable: false),
-                    ArtikelBeschreibung = table.Column<string>(type: "TEXT", nullable: false),
-                    ArtikelGewicht = table.Column<float>(type: "REAL", nullable: false),
-                    ArtikelMaße = table.Column<float>(type: "REAL", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Artikels", x => x.ArtikelID);
-                });
-
             migrationBuilder.CreateTable(
                 name: "HUs",
                 columns: table => new
@@ -72,6 +56,35 @@ namespace Warenwritschaftssystem_der_Segitztherme.Migrations
                 {
                     table.PrimaryKey("PK_Lagerplaetze", x => x.LagerPlatzID);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "Artikels",
+                columns: table => new
+                {
+                    ArtikelID = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    ArtikelName = table.Column<string>(type: "TEXT", nullable: false),
+                    ArtikelBeschreibung = table.Column<string>(type: "TEXT", nullable: true),
+                    ArtikelGewicht = table.Column<float>(type: "REAL", nullable: false),
+                    ArtikelMaße = table.Column<float>(type: "REAL", nullable: false),
+                    Bestand = table.Column<int>(type: "INTEGER", nullable: false),
+                    Mindestbestand = table.Column<int>(type: "INTEGER", nullable: false),
+                    LagerID = table.Column<int>(type: "INTEGER", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Artikels", x => x.ArtikelID);
+                    table.ForeignKey(
+                        name: "FK_Artikels_Lager_LagerID",
+                        column: x => x.LagerID,
+                        principalTable: "Lager",
+                        principalColumn: "LagerID");
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Artikels_LagerID",
+                table: "Artikels",
+                column: "LagerID");
         }
 
         /// <inheritdoc />
@@ -84,10 +97,10 @@ namespace Warenwritschaftssystem_der_Segitztherme.Migrations
                 name: "HUs");
 
             migrationBuilder.DropTable(
-                name: "Lager");
+                name: "Lagerplaetze");
 
             migrationBuilder.DropTable(
-                name: "Lagerplaetze");
+                name: "Lager");
         }
     }
 }

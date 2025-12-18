@@ -6,6 +6,8 @@
 
         public string Beschreibung { get; set; }
 
+        public ICollection<Artikel> Artikel { get; set; } = new List<Artikel>();
+
         public Lager()
         {
         }
