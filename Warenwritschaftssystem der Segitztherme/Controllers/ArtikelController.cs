@@ -52,18 +52,34 @@ namespace Warenwritschaftssystem_der_Segitztherme.Controllers
         // POST: Artikel/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Create([Bind("ArtikelID,ArtikelName,ArtikelBeschreibung,ArtikelGewicht,ArtikelMaße,Bestand,Mindesbestand")] Artikel artikel)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        _context.Add(artikel);
+        //        await _context.SaveChangesAsync();
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    return View(artikel);
+        //}
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ArtikelID,ArtikelName,ArtikelBeschreibung,ArtikelGewicht,ArtikelMaße")] Artikel artikel)
+        public async Task<IActionResult> Create(Artikel artikel)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                _context.Add(artikel);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return View(artikel);
             }
-            return View(artikel);
+
+            _context.Artikels.Add(artikel);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
+
+
 
         // GET: Artikel/Edit/5
         public async Task<IActionResult> Edit(int? id)

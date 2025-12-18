@@ -1,42 +1,49 @@
 ﻿@model Warenwritschaftssystem_der_Segitztherme.Models.Artikel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Artikel Details";
 }
 
-<h1>Details</h1>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
 
-<div>
-    <h4>Artikel</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ArtikelName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ArtikelName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ArtikelBeschreibung)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ArtikelBeschreibung)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ArtikelGewicht)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ArtikelGewicht)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ArtikelMaße)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ArtikelMaße)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.ArtikelID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-bottom">
+                    <h4 class="mb-0 fw-semibold">Artikel Details</h4>
+                </div>
+
+                <div class="card-body">
+                    <dl class="row mb-0">
+                        <dt class="col-sm-4">Name</dt>
+                        <dd class="col-sm-8">@Model.ArtikelName</dd>
+
+                        <dt class="col-sm-4">Beschreibung</dt>
+                        <dd class="col-sm-8">@Model.ArtikelBeschreibung</dd>
+
+                        <dt class="col-sm-4">Gewicht</dt>
+                        <dd class="col-sm-8">@Model.ArtikelGewicht</dd>
+
+                        <dt class="col-sm-4">Maße</dt>
+                        <dd class="col-sm-8">@Model.ArtikelMaße</dd>
+                    </dl>
+
+                    <hr />
+
+                    <div class="d-flex justify-content-between">
+                        <a asp-action="Index" class="btn btn-outline-secondary">
+                            Zur Übersicht
+                        </a>
+
+                        <a asp-action="Edit"
+                           asp-route-id="@Model.ArtikelID"
+                           class="btn btn-primary px-4">
+                            Bearbeiten
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </div>

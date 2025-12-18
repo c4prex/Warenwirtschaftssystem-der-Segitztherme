@@ -9,6 +9,8 @@ namespace Warenwritschaftssystem_der_Segitztherme.Models
         [Required(ErrorMessage = "Bitte eine Beschreibung eingeben.")]
         public string Beschreibung { get; set; }
 
+        public ICollection<Artikel> Artikel { get; set; } = new List<Artikel>();
+
         public Lager()
         {
         }
