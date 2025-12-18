@@ -1,15 +1,79 @@
 ﻿@model IEnumerable<Warenwritschaftssystem_der_Segitztherme.Models.Lager>
 
 @{
-	ViewData["Title"] = "Index";
+    ViewData["Title"] = "Lagerübersicht";
 }
+
+<div class="row g-4">
+    @foreach (var lager in Model)
+    {
+        <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="card lager-card h-100 shadow-sm position-relative">
+
+                <!-- Edit Button (nur beim Hover sichtbar) -->
+                <a asp-action="Edit"
+                   asp-route-id="@lager.LagerID"
+                   class="btn btn-sm btn-primary edit-btn"
+                   title="Lager bearbeiten">
+                    ✎
+                </a>
+
+                <!-- Klick auf Karte → Details -->
+                <a asp-action="Details"
+                   asp-route-id="@lager.LagerID"
+                   class="text-decoration-none text-dark h-100">
+
+                    <div class="card-body text-center d-flex flex-column justify-content-center">
+
+                        <!-- Lager Icon -->
+                        <div class="mb-3">
+                            <div class="lager-icon mx-auto">
+                                🏬
+                            </div>
+                        </div>
+
+                        <!-- Lager Name -->
+                        <h6 class="fw-bold">
+                            @lager.Beschreibung
+                        </h6>
+                    </div>
+                </a>
+            </div>
+        </div>
+    }
+</div>
 
 
 <style>
-	.table-bordered th,
-	.table-bordered td {
-		border: 2px solid #000; /* dicke schwarze Linien */
-	}
+    .lager-card {
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        cursor: pointer;
+    }
+
+        .lager-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 0.75rem 1.5rem rgba(0,0,0,.15);
+        }
+
+    .lager-icon {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background-color: #f1f3f5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 32px;
+    }
+
+    .edit-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        opacity: 0;
+        transition: opacity 0.2s ease;
+        z-index: 2;
+    }
 
 	.table-bordered {
 		border: 2px solid #000; /* äußerer Tabellenrand */
