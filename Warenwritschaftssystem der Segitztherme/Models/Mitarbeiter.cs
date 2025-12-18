@@ -23,6 +23,9 @@ namespace Warenwritschaftssystem_der_Segitztherme.Models
         [StringLength(50)]
         public string? Telefon { get; set; }
 
+        public string? Abteilung { get; set }
+        public string? Rolle { get; set }
+
         public bool IstAktiv { get; set; } = true;
 
         public DateTime ErstelltAm { get; set; } = DateTime.Now;
