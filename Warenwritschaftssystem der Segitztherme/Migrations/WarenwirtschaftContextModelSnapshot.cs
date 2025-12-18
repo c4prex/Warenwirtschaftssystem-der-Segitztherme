@@ -24,7 +24,6 @@ namespace Warenwritschaftssystem_der_Segitztherme.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("ArtikelBeschreibung")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<float>("ArtikelGewicht")
@@ -47,10 +46,15 @@ namespace Warenwritschaftssystem_der_Segitztherme.Migrations
                     b.Property<DateTime?>("GeaendertAm")
                         .HasColumnType("TEXT");
 
+                    b.Property<int?>("LagerID")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int?>("GeaendertVon")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("ArtikelID");
+
+                    b.HasIndex("LagerID");
 
                     b.HasIndex("ErstelltVon");
 
@@ -324,6 +328,11 @@ namespace Warenwritschaftssystem_der_Segitztherme.Migrations
                     b.Navigation("ErstelltVonMitarbeiter");
 
                     b.Navigation("GeaendertVonMitarbeiter");
+                });
+
+            modelBuilder.Entity("Warenwritschaftssystem_der_Segitztherme.Models.Lager", b =>
+                {
+                    b.Navigation("Artikel");
                 });
 #pragma warning restore 612, 618
         }

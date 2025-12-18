@@ -1,14 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace Warenwritschaftssystem_der_Segitztherme.Models
+﻿namespace Warenwritschaftssystem_der_Segitztherme.Models
 {
     public class Lager
     {
         public int LagerID { get; set; }
 
-        [Required(ErrorMessage = "Beschreibung ist ein Pflichtfeld")]
-        [StringLength(200)]
+        [Required(ErrorMessage = "Bitte eine Beschreibung eingeben.")]
         public string Beschreibung { get; set; }
 
         // Audit-Felder
@@ -24,6 +20,8 @@ namespace Warenwritschaftssystem_der_Segitztherme.Models
 
         [ForeignKey("GeaendertVon")]
         public Mitarbeiter? GeaendertVonMitarbeiter { get; set; }
+        public ICollection<Artikel> Artikel { get; set; } = new List<Artikel>();
+
         public Lager()
         {
         }

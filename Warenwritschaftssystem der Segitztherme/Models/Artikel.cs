@@ -1,4 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System.ComponentModel.DataAnnotations;
+
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Warenwritschaftssystem_der_Segitztherme.Models
@@ -9,8 +12,12 @@ namespace Warenwritschaftssystem_der_Segitztherme.Models
 
         [Required]
         [StringLength(200)]
+
+        [Required]
         public string ArtikelName { get; set; }
-        public string ArtikelBeschreibung { get; set; }
+
+        public string? ArtikelBeschreibung { get; set; }
+
         public float ArtikelGewicht { get; set; }
         public float ArtikelMaße { get; set; }
 
@@ -31,5 +38,11 @@ namespace Warenwritschaftssystem_der_Segitztherme.Models
         {
             
         }
+        // ✅ OPTIONALER FK
+        public int? LagerID { get; set; }
+
+        // Navigation
+        [ValidateNever]
+        public Lager? Lager { get; set; }
     }
 }

@@ -1,53 +1,61 @@
-﻿@model IEnumerable<Warenwritschaftssystem_der_Segitztherme.Models.Artikel>
+﻿
+
+@model IEnumerable<Warenwritschaftssystem_der_Segitztherme.Models.Artikel>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Artikel";
 }
 
-<h1>Index</h1>
+<div class="container mt-5">
+    <div class="card shadow-sm border-0">
+        <div class="card-header bg-white border-bottom d-flex justify-content-between align-items-center">
+            <h4 class="mb-0 fw-semibold">Artikel</h4>
+            <a asp-action="Create" class="btn btn-primary">
+                Neuer Artikel
+            </a>
+        </div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ArtikelName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ArtikelBeschreibung)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ArtikelGewicht)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ArtikelMaße)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ArtikelName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ArtikelBeschreibung)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ArtikelGewicht)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ArtikelMaße)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ArtikelID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ArtikelID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ArtikelID">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+        <form class="d-flex" asp-action="Index" asp-controller="Artikel">
+            <input name="suchstring" class="form-control me-1" type="search" placeholder="Suche" aria-label="Suche" value="@ViewData["CurrentFilter"]">
+            <button class="btn btn-dark" type="submit">Suchen</button>
+            @* <button class="btn btn-dark" asp-action="Index" class="text-dark">Zurücksetzen</button> *@
+            <a asp-action="Index"
+               asp-controller="Artikel"
+               class="btn btn-link text-dark">
+                Zurücksetzen
+            </a>
+
+        </form>
+
+
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>Name</th>
+                        <th>Beschreibung</th>
+                        <th>Gewicht</th>
+                        <th>Maße</th>
+                        <th class="text-end">Aktionen</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.ArtikelName</td>
+                            <td>@item.ArtikelBeschreibung</td>
+                            <td>@item.ArtikelGewicht</td>
+                            <td>@item.ArtikelMaße</td>
+                            <td class="text-end">
+                                <a asp-action="Details" asp-route-id="@item.ArtikelID" class="btn btn-sm btn-outline-secondary">Details</a>
+                                <a asp-action="Edit" asp-route-id="@item.ArtikelID" class="btn btn-sm btn-outline-primary">Bearbeiten</a>
+                                <a asp-action="Delete" asp-route-id="@item.ArtikelID" class="btn btn-sm btn-outline-danger">Löschen</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

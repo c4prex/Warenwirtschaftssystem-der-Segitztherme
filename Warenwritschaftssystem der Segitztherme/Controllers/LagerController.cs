@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using Warenwritschaftssystem_der_Segitztherme.Data;
 using Warenwritschaftssystem_der_Segitztherme.Models;
 
@@ -66,6 +67,7 @@ namespace Warenwritschaftssystem_der_Segitztherme.Controllers
         {
             return View();
         }
+
 
 
         // POST: Lager/Create
