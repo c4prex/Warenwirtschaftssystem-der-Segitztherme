@@ -48,6 +48,8 @@
                             <th>Max. Gewicht</th>
                             <th>Bereich</th>
                             <th>Typ</th>
+                            <th>Erstellt von</th>
+                            <th>Erstellt am</th>
                             <th class="text-end">Aktionen</th>
                         </tr>
                     </thead>
@@ -71,6 +73,8 @@
                                     <td>@item.MaxGewicht kg</td>
                                     <td>@item.LagerBereich</td>
                                     <td>@item.LagerTyp</td>
+                                    <td>@item.ErstelltVonMitarbeiter?.Anzeigename</td>
+                                    <td>@item.ErstelltAm?.ToString("dd.MM.yyyy HH:mm")</td>
                                     <td class="text-end">
                                         <a asp-action="Details" asp-route-id="@item.LagerPlatzID" class="btn btn-sm btn-outline-secondary">Details</a>
                                         <a asp-action="Edit" asp-route-id="@item.LagerPlatzID" class="btn btn-sm btn-outline-primary">Edit</a>

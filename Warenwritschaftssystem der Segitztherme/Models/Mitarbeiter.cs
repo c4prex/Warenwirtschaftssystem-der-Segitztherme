@@ -23,8 +23,8 @@ namespace Warenwritschaftssystem_der_Segitztherme.Models
         [StringLength(50)]
         public string? Telefon { get; set; }
 
-        public string? Abteilung { get; set }
-        public string? Rolle { get; set }
+        public string? Abteilung { get; set; }
+        public string? Rolle { get; set; }
 
         public bool IstAktiv { get; set; } = true;
 
@@ -33,5 +33,8 @@ namespace Warenwritschaftssystem_der_Segitztherme.Models
         // Computed Property - wird NICHT in der Datenbank gespeichert
         [NotMapped]
         public string Anzeigename => $"{Nachname}{Vorname.Substring(0, Math.Min(2, Vorname.Length))}"; // SchulzFr
+
+        [NotMapped]
+        public string Vollname => $"{Nachname} {Vorname}"; //Schulz Frank
     }
 }

@@ -81,7 +81,16 @@ namespace Warenwritschaftssystem_der_Segitztherme.Controllers
             }
 
             // Lade Lager für Dropdown
-            ViewBag.LagerListe = new SelectList(await _context.Lager.ToListAsync(), "LagerID", "Beschreibung");
+            ViewBag.LagerListe = new SelectList(_context.Lager.OrderBy(l => l.Beschreibung), "LagerID", "Beschreibung");                  
+
+            // Hollt die Mitarbeitername
+            ViewBag.MitarbeiterListe = new SelectList(
+               _context.Mitarbeiter
+                   .Where(m => m.IstAktiv)
+                   .OrderBy(m => m.Nachname),
+               "MitarbeiterID",
+               "Vollname"
+           );
             return View();
         }
 
@@ -94,6 +103,8 @@ namespace Warenwritschaftssystem_der_Segitztherme.Controllers
         {
             if (ModelState.IsValid)
             {
+                lagerplatz.ErstelltAm = DateTime.Now;
+
                 // Audit-Felder setzen
                 lagerplatz.ErstelltVon = 1; // TODO: Aus Login holen
                 lagerplatz.ErstelltAm = DateTime.Now;
@@ -103,6 +114,22 @@ namespace Warenwritschaftssystem_der_Segitztherme.Controllers
                 TempData["SuccessMessage"] = $"Lagerplatz '{lagerplatz.LagerPlatzName}' wurde erfolgreich angelegt!";
                 return RedirectToAction(nameof(Index));
             }
+
+            // Dropdowns neu laden
+            ViewBag.LagerListe = new SelectList(
+                _context.Lager,
+                "LagerID",
+                "Beschreibung",
+                lagerplatz.LagerID
+            );
+
+            ViewBag.MitarbeiterListe = new SelectList(
+                _context.Mitarbeiter.Where(m => m.IstAktiv),
+                "MitarbeiterID",
+                "Vollname",
+                lagerplatz.ErstelltVon
+            );
+
             return View(lagerplatz);
         }
 

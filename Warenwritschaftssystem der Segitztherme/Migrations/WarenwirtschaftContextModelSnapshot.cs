@@ -37,7 +37,6 @@ namespace Warenwritschaftssystem_der_Segitztherme.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("TEXT");
 
-<<<<<<< HEAD
                     b.Property<DateTime?>("ErstelltAm")
                         .HasColumnType("TEXT");
 
@@ -47,25 +46,19 @@ namespace Warenwritschaftssystem_der_Segitztherme.Migrations
                     b.Property<DateTime?>("GeaendertAm")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("LagerID")
+                    b.Property<int?>("GeaendertVon")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("GeaendertVon")
-=======
                     b.Property<int?>("LagerID")
->>>>>>> origin/dev
                         .HasColumnType("INTEGER");
 
                     b.HasKey("ArtikelID");
 
-                    b.HasIndex("LagerID");
-
                     b.HasIndex("ErstelltVon");
 
                     b.HasIndex("GeaendertVon");
-=======
+
                     b.HasIndex("LagerID");
->>>>>>> origin/dev
 
                     b.ToTable("Artikels");
                 });
@@ -195,12 +188,14 @@ namespace Warenwritschaftssystem_der_Segitztherme.Migrations
                     b.ToTable("Lagerplaetze");
                 });
 
-<<<<<<< HEAD
             modelBuilder.Entity("Warenwritschaftssystem_der_Segitztherme.Models.Mitarbeiter", b =>
                 {
                     b.Property<int>("MitarbeiterID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("Abteilung")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
                         .HasMaxLength(100)
@@ -215,6 +210,9 @@ namespace Warenwritschaftssystem_der_Segitztherme.Migrations
                     b.Property<string>("Nachname")
                         .IsRequired()
                         .HasMaxLength(100)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Rolle")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Telefon")
@@ -235,7 +233,7 @@ namespace Warenwritschaftssystem_der_Segitztherme.Migrations
                         {
                             MitarbeiterID = 1,
                             Email = "f.schulz@example.com",
-                            ErstelltAm = new DateTime(2025, 12, 18, 9, 25, 30, 490, DateTimeKind.Local).AddTicks(8332),
+                            ErstelltAm = new DateTime(2025, 12, 18, 10, 39, 30, 555, DateTimeKind.Local).AddTicks(9742),
                             IstAktiv = true,
                             Nachname = "Schulz",
                             Telefon = "0123456789",
@@ -245,7 +243,7 @@ namespace Warenwritschaftssystem_der_Segitztherme.Migrations
                         {
                             MitarbeiterID = 2,
                             Email = "admin@system.com",
-                            ErstelltAm = new DateTime(2025, 12, 18, 9, 25, 30, 490, DateTimeKind.Local).AddTicks(8337),
+                            ErstelltAm = new DateTime(2025, 12, 18, 10, 39, 30, 555, DateTimeKind.Local).AddTicks(9748),
                             IstAktiv = true,
                             Nachname = "Admin",
                             Vorname = "System"
@@ -264,18 +262,15 @@ namespace Warenwritschaftssystem_der_Segitztherme.Migrations
                         .HasForeignKey("GeaendertVon")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.Navigation("ErstelltVonMitarbeiter");
-
-                    b.Navigation("GeaendertVonMitarbeiter");
-=======
-            modelBuilder.Entity("Warenwritschaftssystem_der_Segitztherme.Models.Artikel", b =>
-                {
                     b.HasOne("Warenwritschaftssystem_der_Segitztherme.Models.Lager", "Lager")
                         .WithMany("Artikel")
                         .HasForeignKey("LagerID");
 
+                    b.Navigation("ErstelltVonMitarbeiter");
+
+                    b.Navigation("GeaendertVonMitarbeiter");
+
                     b.Navigation("Lager");
->>>>>>> origin/dev
                 });
 
             modelBuilder.Entity("Warenwritschaftssystem_der_Segitztherme.Models.HU", b =>

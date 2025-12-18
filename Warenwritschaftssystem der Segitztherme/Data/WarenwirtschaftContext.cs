@@ -100,6 +100,8 @@ namespace Warenwritschaftssystem_der_Segitztherme.Data
                     Nachname = "Schulz",
                     Email = "f.schulz@example.com",
                     Telefon = "0123456789",
+                    Abteilung = "Logistik",
+                    Rolle = "Manager",
                     IstAktiv = true,
                     ErstelltAm = DateTime.Now
                 },
@@ -109,6 +111,8 @@ namespace Warenwritschaftssystem_der_Segitztherme.Data
                     Vorname = "System",
                     Nachname = "Admin",
                     Email = "admin@system.com",
+                    Abteilung = "Lager",
+                    Rolle = "Lagerist",
                     IstAktiv = true,
                     ErstelltAm = DateTime.Now
                 }

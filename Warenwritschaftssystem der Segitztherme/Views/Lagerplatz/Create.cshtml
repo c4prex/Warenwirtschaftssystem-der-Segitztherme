@@ -27,8 +27,10 @@
 
                         <!-- Lager ID -->
                         <div class="mb-3">
-                            <label asp-for="LagerID" class="form-label fw-medium"></label>
-                            <input asp-for="LagerID" class="form-control" placeholder="Lager-ID eingeben" />
+                            <label asp-for="LagerID" class="form-label fw-medium">Lager</label>
+                            <select asp-for="LagerID" asp-items="ViewBag.LagerListe" class="form-select">
+                                <option value="Lager auswählen"></option>
+                            </select> 
                             <span asp-validation-for="LagerID" class="text-danger small"></span>
                         </div>
 
@@ -61,6 +63,22 @@
                                 <label asp-for="LagerTyp" class="form-label fw-medium"></label>
                                 <input asp-for="LagerTyp" class="form-control" placeholder="z. B. Regal, Kühlraum" />
                                 <span asp-validation-for="LagerTyp" class="text-danger small"></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="ErstelltVon"
+                                       class="form-label fw-medium">
+                                    Erstellt von
+                                </label>
+                                <select asp-for="ErstelltVon"
+                                        asp-items="ViewBag.MitarbeiterListe"
+                                        class="form-select">
+                                    <option value="">
+                                        Mitarbeiter auswählen
+                                    </option>
+                                </select>
                             </div>
                         </div>
 
