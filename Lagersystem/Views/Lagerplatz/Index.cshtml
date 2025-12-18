@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Lagersystem.Models.Lagerplatz>
+
+@{
+    ViewData["Title"] = "Lagerplätze";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-sm border-0">
+        <div class="card-header bg-white border-bottom d-flex justify-content-between align-items-center">
+            <h4 class="mb-0 fw-semibold">Lagerplätze</h4>
+            <a asp-action="Create" class="btn btn-primary">
+                Neuer Lagerplatz
+            </a>
+        </div>
+
+        <form class="d-flex" asp-action="Index" asp-controller="Lagerplatz">
+            <input name="suchstring" class="form-control me-1" type="search" placeholder="Suche" aria-label="Suche" value="@ViewData["CurrentFilter"]">
+            <button class="btn btn-dark" type="submit">Suchen</button>
+            @* <button class="btn btn-dark" asp-action="Index" class="text-dark">Zurücksetzen</button> *@
+            <a asp-action="Index"
+               asp-controller="Lagerplatz"
+               class="btn btn-link text-dark">
+                Zurücksetzen
+            </a>
+
+        </form>
+        
+			
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>Name</th>
+                        <th>Lager</th>
+                        <th>HU</th>
+                        <th>Max. Gewicht</th>
+                        <th>Bereich</th>
+                        <th>Typ</th>
+                        <th class="text-end">Aktionen</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="fw-medium">@item.LagerPlatzName</td>
+                            <td>@item.LagerID</td>
+                            <td>@item.HUAnzahl</td>
+                            <td>@item.MaxGewicht kg</td>
+                            <td>@item.LagerBereich</td>
+                            <td>@item.LagerTyp</td>
+                            <td class="text-end">
+                                <a asp-action="Details" asp-route-id="@item.LagerPlatzID" class="btn btn-sm btn-outline-secondary">Details</a>
+                                <a asp-action="Edit" asp-route-id="@item.LagerPlatzID" class="btn btn-sm btn-outline-primary">Edit</a>
+                                <a asp-action="Delete" asp-route-id="@item.LagerPlatzID" class="btn btn-sm btn-outline-danger">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

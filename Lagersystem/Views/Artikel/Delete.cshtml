@@ -1,0 +1,44 @@
+﻿@model Lagersystem.Models.Artikel
+
+@{
+    ViewData["Title"] = "Artikel löschen";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-danger bg-opacity-10 border-bottom">
+                    <h4 class="mb-0 text-danger fw-semibold">Lagerplatz löschen</h4>
+                    <small class="text-muted">Dieser Vorgang kann nicht rückgängig gemacht werden</small>
+                </div>
+
+                <div class="card-body">
+                    <dl class="row">
+            <dt class="col-sm-4">Name</dt>
+            <dd class="col-sm-8">@Model.ArtikelName</dd>
+
+            <dt class="col-sm-4">Beschreibung</dt>
+            <dd class="col-sm-8">@Model.ArtikelBeschreibung</dd>
+        </dl>
+
+                    <hr />
+
+                    <form asp-action="Delete" class="d-flex justify-content-between">
+                        <input type="hidden" asp-for="ArtikelID" />
+
+                        <a asp-action="Index" class="btn btn-outline-secondary">
+                            Abbrechen
+                        </a>
+
+                        <button type="submit" class="btn btn-danger px-4">
+                            Endgültig löschen
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
